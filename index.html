@@ -392,7 +392,7 @@ function seed(){const d={};COLLS.forEach(c=>d[c]={});
   d.people={a:{name:"Lars",status:"ja",arrive:"tor",car:true,seats:3,from:"Västerås",depart:"15.30"},b:{name:"Rasmus",status:"ja",arrive:"tor",car:false,ride:"a"},
     c:{name:"Kompis 3",status:"ja",arrive:"fre",car:true,seats:2,from:"Stockholm",depart:"07.00"},d:{name:"Kompis 4",status:"ja",arrive:"fre",car:false},e:{name:"Kompis 5",status:"kanske",arrive:"fre",car:false}};
   d.items={kaffe:{by:"a"},salt:{by:"b"}};
-  d.proposals={x1:{slot:"lor-middag",dish:"Renskav med mos och lingon",by:"b",at:1},x2:{slot:"lor-middag",dish:"Spaghetti bolognese",by:"a",at:2},x3:{slot:"tor-middag",dish:"Tacos",by:"b",at:3}};
+  d.proposals={x1:{slot:"lor-middag",dish:"Renskav med mos och lingon",by:"b",at:1},x2:{slot:"lor-middag",dish:"Spaghetti bolognese",by:"a",at:2},x3:{slot:"tor-middag",dish:"Tacos",by:"b",at:3},y1:{slot:"frukost",dish:"Havregrynsgröt",by:"a",at:4},y2:{slot:"frukost",dish:"Ägg och bacon",by:"b",at:5}};
   d.votes={a:{x1:1,x3:1},b:{x1:1},c:{x2:1}};d.cooks={"lor-middag":{by:"b"}};
   d.expenses={e1:{what:"Stugan (exempel)",amount:9000,payer:"a",split:["a","b","c","d"],mode:"natter",at:1},e2:{what:"Mat ICA (exempel)",amount:1840,payer:"c",split:["a","b","c","d"],mode:"lika",at:2}};
   return d}
@@ -601,13 +601,35 @@ function itemsSection(){
 
 /* ---------- MATEN ---------- */
 const TH='<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M2 10h4v11H2zM8 21V10l4.6-7.4c.5-.8 1.5-1.1 2.3-.6.7.4 1 1.2.8 2L14.6 9H20c1.3 0 2.2 1.2 1.9 2.4l-2 8C19.7 20.4 18.9 21 18 21z"/></svg>';
+/* Frukosten är samma alla morgnar: en gemensam lista i stället för röstning per dag.
+   Sparas som förslag med slot "frukost" (äldre per-dag-förslag som "fre-frukost" räknas också in). */
+const isBreakfast=slot=>slot==="frukost"||/-frukost$/.test(slot||"");
+function breakfastSection(lines){
+  const list=Object.entries(S.proposals).filter(([,p])=>isBreakfast(p.slot)).sort((a,b)=>(a[1].at||0)-(b[1].at||0));
+  const cook=S.cooks.frukost,n=eaters("son-frukost").length;
+  lines.push("Frukost fre–sön: "+(list.length?list.map(([,p])=>p.dish).join(", "):"–")+(cook?" (ansvarig "+name(cook.by)+")":""));
+  const card=h("div",{class:"meal",id:"m-frukost"},
+    h("div",{class:"meal-top"},h("span",{class:"t num"},"08.00"),h("h3",null,"Frukost"),h("span",{class:"pill num"},n+" äter")),
+    h("p",{class:"note"},"Samma varje morgon, fredag till söndag. Söndag kl 8.30, ut ur stugan kl 11. Lägg till det som ska finnas på bordet."));
+  if(list.length)card.append(h("ul",{class:"list"},list.map(([id,p])=>h("li",{class:"item"},
+    h("div",null,h("b",null,p.dish),h("small",null,"Från "+name(p.by))),
+    p.by===me?confirmBtn("Ta bort","Tryck igen",()=>drop("proposals",id)):h("span")))));
+  else card.append(h("p",{class:"note"},"Inget på listan än."));
+  if(me){const f=h("form",{class:"add"},h("input",{type:"text",id:"in-frukost",maxlength:"70",placeholder:"t.ex. gröt, ägg, bröd","aria-label":"Lägg till på frukosten"}),h("button",{class:"btn",type:"submit"},"Lägg till"));
+    f.addEventListener("submit",e=>{e.preventDefault();const i=$("in-frukost"),v=i.value.trim();if(!v)return;i.value="";put("proposals",uid("x"),{slot:"frukost",dish:v,by:me,at:Date.now()});toast(v+" är tillagt")});card.append(f)}
+  card.append(h("div",{class:"row between"},h("span",{class:"note"},cook?"Ansvarig: "+(cook.by===me?"du":name(cook.by)):"Ingen ansvarig än"),
+    me&&!cook?h("button",{class:"btn ghost small",type:"button",onclick:()=>put("cooks","frukost",{by:me})},"Jag fixar frukosten"):null,
+    cook&&cook.by===me?h("button",{class:"link",type:"button",onclick:()=>drop("cooks","frukost")},"Släpp"):null));
+  return h("section",{"aria-labelledby":"bfH"},h("div",{class:"dayhead"},h("h3",{id:"bfH",style:"font-family:var(--display);font-stretch:condensed;font-size:30px;text-transform:uppercase"},"Varje morgon")),card)}
 function viewMaten(root){
   const lines=["Meny Bäverstigen 55, 19–22 nov"];
   root.append(h("div",{class:"view-head"},h("p",{class:"eyebrow"},"Maten"),h("h2",null,"Vad blir det?"),
     h("p",{class:"lead"},"Föreslå och rösta. Rätten med flest röster vinner. Vi handlar allt tillsammans i en stor gemensam handling, och antalet som äter räknas från vem som är på plats.")));
+  root.append(breakfastSection(lines));
   ["tor","fre","lor","son"].forEach(day=>{
+    if(!MEALS.some(m=>m[1]===day&&m[3]!=="Frukost"))return;  // söndag har bara frukost
     const sec=h("section",{"aria-label":DAYNAME[day]},h("div",{class:"dayhead"},h("h3",{style:"font-family:var(--display);font-stretch:condensed;font-size:30px;text-transform:uppercase"},DAYNAME[day])));
-    MEALS.filter(m=>m[1]===day).forEach(([slot,,time,label,note])=>{
+    MEALS.filter(m=>m[1]===day&&m[3]!=="Frukost").forEach(([slot,,time,label,note])=>{
       const L=leader(slot),cook=S.cooks[slot],n=eaters(slot).length,mine=(me&&S.votes[me])||{};
       lines.push(DAYNAME[day].split(" ")[0]+" "+label.toLowerCase()+": "+(L.lead?L.lead.p.dish:"–")+(cook?" (kock "+name(cook.by)+")":""));
       const card=h("div",{class:"meal",id:"m-"+slot},
