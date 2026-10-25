@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}</style>
+<title>Bäverstigen 55</title>
+</head>
+<body>
+
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="theme-color" content="#0A1D2B">
+<style>
+/* Layout: the page is the chest of a ski shell at dusk. A crumpled bib is pinned over the zipper;
+   everything else is stitched-on patches. Four tabs: Resan, Maten, På plats, Kassan. */
+:root{
+  color-scheme:dark;
+  --shell:#123247; --shell-hi:#1C4A66; --shell-lo:#0A1D2B; --deep:#07141D; --seam:#2C6283;
+  --paper:#F7F5EE; --paper-ink:#141B22; --falu:#A3261B; --falu-hi:#C7392B;
+  --lamp:#FFE3A6; --gold:#E9B83A; --ok:#58D08F; --warn:#F0B44C;
+  --ink:#EAF1F5; --ink-2:#A9BFCD; --patch:rgba(6,20,30,.66); --patch-line:rgba(170,205,225,.16); --chip:rgba(255,255,255,.07);
+  --display:"DIN Condensed","Bahnschrift Condensed","Bahnschrift SemiCondensed","Roboto Condensed","Arial Narrow",Bahnschrift,system-ui,sans-serif;
+  --body:"Segoe UI Variable Text","Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1); --nav-h:66px;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{background:var(--deep);scroll-padding-top:16px;scroll-padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom,0px) + 16px)}
+body{background:var(--deep);color:var(--ink);font:400 16px/1.55 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+h1,h2,h3,p{margin:0}
+button,input,select{font:inherit;color:inherit}
+.num{font-variant-numeric:tabular-nums}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid var(--lamp);outline-offset:2px;border-radius:6px}
+a{color:var(--lamp)}
+
+/* ---------- Jacket hero ---------- */
+.jacket{position:relative;isolation:isolate;overflow:hidden;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:124px 40px;
+  background:radial-gradient(90% 55% at 50% 26%,rgba(255,227,166,.20),rgba(255,227,166,0) 70%),radial-gradient(140% 90% at 50% 0%,var(--shell-hi),var(--shell) 45%,var(--shell-lo) 100%)}
+.jacket::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.55;mix-blend-mode:overlay;
+  background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23f)'/></svg>"),
+  repeating-linear-gradient(0deg,rgba(255,255,255,.07) 0 1px,transparent 1px 7px),repeating-linear-gradient(90deg,rgba(255,255,255,.07) 0 1px,transparent 1px 7px)}
+.jacket::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(104deg,transparent 0 30%,rgba(0,0,0,.22) 38%,transparent 46%),linear-gradient(78deg,transparent 0 62%,rgba(255,255,255,.06) 68%,transparent 74%),linear-gradient(180deg,transparent 0 72%,var(--deep))}
+.zip{position:absolute;top:0;bottom:0;left:calc(50% - 11px);width:22px;z-index:-1;
+  background:repeating-linear-gradient(180deg,#8E9AA3 0 3px,transparent 3px 7px) 4px 0/6px 100% no-repeat,repeating-linear-gradient(180deg,transparent 0 3.5px,#7B8790 3.5px 6.5px,transparent 6.5px 7px) 11px 0/6px 100% no-repeat,linear-gradient(90deg,#0B1820,#13222C 50%,#0B1820)}
+.zip::after{content:"";position:absolute;left:3px;top:52px;width:16px;height:44px;border-radius:5px 5px 8px 8px;background:linear-gradient(90deg,#5E6A72,#C5CDD2 45%,#6E7A82);box-shadow:0 6px 10px rgba(0,0,0,.45)}
+.stitch{position:absolute;z-index:-1;left:-10%;right:-10%;top:18px;border-top:2px dashed var(--seam);opacity:.8;transform:rotate(-4deg)}
+.badge{position:absolute;z-index:1;top:28px;left:max(22px,calc(50% - 190px));width:118px;transform:rotate(-7deg);filter:drop-shadow(0 3px 2px rgba(0,0,0,.55))}
+.badge svg{display:block;width:100%;height:auto}
+#snow{position:absolute;inset:0;width:100%;height:100%;z-index:3;pointer-events:none}
+.stage{max-width:420px;margin:0 auto}
+.bib-wrap{position:relative;transform:rotate(-2deg)}
+@media (prefers-reduced-motion:no-preference){.bib-wrap{animation:land .9s var(--ease) both}.pin{animation:pinIn .4s var(--ease) both}.pin.p1{animation-delay:.55s}.pin.p2{animation-delay:.65s}.pin.p3{animation-delay:.75s}.pin.p4{animation-delay:.85s}}
+@keyframes land{from{transform:translateY(-30px) rotate(-7deg) scale(1.04)}to{transform:rotate(-2deg)}}
+@keyframes pinIn{from{transform:var(--r) scale(1.6) translateY(-8px)}to{transform:var(--r)}}
+.bib{position:relative;filter:url(#crumple) drop-shadow(0 22px 22px rgba(0,0,0,.55)) drop-shadow(0 3px 3px rgba(0,0,0,.35))}
+.paper{position:relative;overflow:hidden;background:var(--paper);color:var(--paper-ink);border-radius:3px;padding:24px 22px 0;
+  clip-path:polygon(0.6% 1%,22% 0,48% 0.8%,77% 0,99.4% 0.6%,100% 30%,99.3% 62%,100% 99%,71% 100%,40% 99.2%,12% 100%,0 99.4%,0.7% 64%,0 31%)}
+.creases{position:absolute;inset:0;z-index:2;pointer-events:none;mix-blend-mode:multiply;width:100%;height:100%}
+.bib-top{position:relative;z-index:1;display:flex;justify-content:space-between;gap:12px;padding:0 18px;font-family:var(--display);font-stretch:condensed;font-weight:700;font-size:15px;letter-spacing:.12em;text-transform:uppercase;line-height:1.15}
+.bib-top span:last-child{color:var(--falu);text-align:right}
+.bib-no{position:relative;z-index:1;font-family:var(--display);font-stretch:condensed;font-weight:700;font-size:clamp(150px,46vw,230px);line-height:.76;letter-spacing:-.03em;text-align:center;margin:18px 0 6px}
+.bib-name{position:relative;z-index:1;font-family:var(--display);font-stretch:condensed;font-weight:700;font-size:28px;text-align:center;letter-spacing:.08em;text-transform:uppercase;overflow-wrap:anywhere;padding:0 8px}
+.bib-band{position:relative;z-index:1;margin:14px -22px 0;background:var(--falu);color:#FFF;display:grid;grid-template-columns:repeat(3,1fr);text-align:center;padding:12px 6px 10px}
+.bib-band b{display:block;font-family:var(--display);font-stretch:condensed;font-size:28px;line-height:1}
+.bib-band span{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.92}
+.chipstrip{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0 -22px;padding:12px 58px 14px;font:700 11px var(--body);letter-spacing:.14em;text-transform:uppercase;color:#59626A;border-top:1px dashed #C9C6BC}
+.bars{height:22px;width:120px;flex:none;background:repeating-linear-gradient(90deg,#141B22 0 2px,transparent 2px 3px,#141B22 3px 4px,transparent 4px 7px,#141B22 7px 10px,transparent 10px 11px,#141B22 11px 12px,transparent 12px 15px)}
+.pin{position:absolute;z-index:4;width:64px;height:20px;transform:var(--r);filter:drop-shadow(0 4px 3px rgba(0,0,0,.5))}
+.pin.p1{left:-6px;top:6px;--r:rotate(-28deg)}.pin.p2{right:-8px;top:4px;--r:rotate(24deg) scaleX(-1)}
+.pin.p3{left:-6px;bottom:4px;--r:rotate(30deg)}.pin.p4{right:-8px;bottom:2px;--r:rotate(-22deg) scaleX(-1)}
+
+/* ---------- Layout ---------- */
+main{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:8px calc(var(--nav-h) + env(safe-area-inset-bottom,0px) + 48px)}
+.col{max-width:560px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:44px}
+.view{display:grid;grid-template-columns:minmax(0,1fr);gap:44px}
+.view-head{padding-top:28px}
+section{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;min-width:0}
+.eyebrow{font-family:var(--display);font-stretch:condensed;font-weight:700;font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--lamp)}
+h2{font-family:var(--display);font-stretch:condensed;font-weight:700;font-size:44px;line-height:.92;text-wrap:balance;margin-top:4px}
+h3{font-size:18px;line-height:1.3}
+.lead{color:var(--ink-2);max-width:60ch}
+.note{font-size:14px;color:var(--ink-2)}
+.patch{background:var(--patch);border:1px solid var(--patch-line);border-radius:14px;padding:16px;display:grid;grid-template-columns:minmax(0,1fr);gap:12px;outline:2px dashed var(--patch-line);outline-offset:-8px}
+.patch.paperish{background:var(--paper);color:var(--paper-ink);outline-color:rgba(20,27,34,.15);border-color:transparent}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.row.between{justify-content:space-between}
+.grow{flex:1;min-width:0}
+.list{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 16px;border:0;border-radius:12px;background:var(--falu-hi);color:#FFF;font-weight:700;cursor:pointer;text-decoration:none;transition:transform .12s var(--ease),filter .2s}
+.btn:hover{filter:brightness(1.08)}.btn:active{transform:scale(.97)}
+.btn.ghost{background:var(--chip);color:var(--ink);box-shadow:inset 0 0 0 1px var(--patch-line)}
+.btn.small{min-height:44px;padding:0 12px;font-size:14px}
+.btn:disabled{opacity:.5;cursor:default}
+.link{border:0;background:none;color:var(--lamp);font-weight:700;font-size:14px;text-decoration:underline;text-underline-offset:3px;min-height:44px;padding:0 4px;cursor:pointer}
+.link.danger{color:#FF9A8C}
+input[type=text],input[type=number],input[type=time],select{background:rgba(0,0,0,.28);border:2px solid var(--patch-line);border-radius:12px;padding:0 12px;min-height:46px;min-width:0;width:100%;color:var(--ink)}
+input:focus,select:focus{outline:none;border-color:var(--lamp)}
+label.f{display:grid;gap:6px;font-size:14px;font-weight:600;color:var(--ink-2)}
+.form{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{min-height:44px;padding:0 14px;border-radius:999px;border:0;background:var(--chip);box-shadow:inset 0 0 0 1px var(--patch-line);font-weight:700;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--paper);color:var(--paper-ink);box-shadow:none}
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:3px 10px;font-size:13px;font-weight:700;background:var(--chip);white-space:nowrap}
+.pill.ja{background:rgba(88,208,143,.16);color:#9BE6BC}.pill.kanske{background:rgba(240,180,76,.16);color:#F6CF86}.pill.nej{background:rgba(255,255,255,.06);color:var(--ink-2)}
+.pill.warn{background:rgba(240,180,76,.16);color:#F6CF86}
+.toast{position:fixed;left:50%;bottom:calc(var(--nav-h) + env(safe-area-inset-bottom,0px) + 14px);transform:translateX(-50%);z-index:70;background:var(--paper);color:var(--paper-ink);font-weight:700;border-radius:12px;padding:12px 16px;max-width:calc(100% - 32px);box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.demo{background:rgba(240,180,76,.14);border:1px solid rgba(240,180,76,.4);color:#F6CF86;border-radius:12px;padding:10px 14px;font-size:14px}
+
+/* Now */
+.now{margin-top:-8px}
+.now li{display:grid;grid-template-columns:10px 1fr auto;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--patch-line)}
+.now li:first-child{border-top:0;padding-top:0}
+.now li i{width:10px;height:10px;border-radius:50%;background:var(--warn)}
+.now li i.ok{background:var(--ok)}
+.now b{display:block}.now small{display:block;color:var(--ink-2);font-size:14px}
+
+/* People */
+.person{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;align-items:center;padding:12px;border-radius:12px;background:var(--chip)}
+.person.me{box-shadow:inset 0 0 0 2px var(--lamp)}
+.person b{font-size:17px;overflow-wrap:anywhere}
+.person .meta{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px}
+.whochips{display:flex;flex-wrap:wrap;gap:8px}
+
+/* Rides */
+.dayhead{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.dayhead h3{font-family:var(--display);font-stretch:condensed;font-size:28px;text-transform:uppercase;letter-spacing:.02em}
+.car{display:grid;gap:10px;padding:14px;border-radius:12px;background:var(--chip)}
+.seats{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:6px}
+.seat{min-height:46px;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:0 10px;font-weight:700;font-size:15px;text-align:center;overflow-wrap:anywhere}
+.seat.taken{background:var(--paper);color:var(--paper-ink)}
+.seat.free{border:2px dashed var(--patch-line);color:var(--ink-2);background:none;cursor:pointer}
+button.seat.free:hover{border-color:var(--lamp);color:var(--lamp)}
+.seat.driver{background:var(--falu);color:#FFF}
+
+/* Items */
+.item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:8px 8px 8px 12px;border-radius:12px;background:var(--chip)}
+.item.open{box-shadow:inset 3px 0 0 var(--warn)}
+.item small{display:block;color:var(--ink-2);font-size:13px}
+
+/* Food */
+.meal{display:grid;gap:10px;padding:14px;border-radius:12px;background:var(--chip)}
+.meal-top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.meal-top .t{font-weight:800;color:var(--ink-2)}
+.meal-top h3{flex:1;min-width:0}
+.prop{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:8px;align-items:center;padding:8px 8px 8px 12px;border-radius:10px;background:rgba(0,0,0,.22)}
+.prop.lead{background:var(--paper);color:var(--paper-ink)}
+.prop b{overflow-wrap:anywhere}
+.prop small{display:block;font-size:12px;opacity:.75}
+.vote{display:inline-flex;align-items:center;gap:6px;min-height:44px;min-width:58px;justify-content:center;padding:0 10px;border:0;border-radius:999px;background:rgba(255,255,255,.08);color:inherit;font-weight:800;cursor:pointer}
+.prop.lead .vote{background:rgba(20,27,34,.08)}
+.vote svg{width:17px;height:17px}
+.vote[aria-pressed="true"].up{background:var(--falu-hi);color:#FFF}
+.vote[aria-pressed="true"].down{background:var(--paper-ink);color:var(--paper)}
+.add{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px}
+
+/* Place */
+.km{font-family:var(--display);font-stretch:condensed;font-weight:700;font-size:96px;line-height:.8}
+.km sup{font-size:28px;vertical-align:top;margin-left:4px}
+.chart svg{width:100%;height:auto;display:block}
+.chart text{fill:var(--ink-2);font:600 12px var(--body)}
+.chart .lbl{fill:var(--ink);font:700 13px var(--body)}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.fact{padding:12px;border-radius:12px;background:var(--chip)}
+.fact b{display:block}.fact span{font-size:14px;color:var(--ink-2)}
+.jour{background:var(--falu);border-radius:14px;padding:18px;display:grid;gap:8px}
+.tel{font-family:var(--display);font-stretch:condensed;font-weight:700;font-size:clamp(34px,10.5vw,54px);line-height:1;user-select:all;color:#FFF;text-decoration:none;white-space:nowrap}
+.jour .btn{background:#FFF;color:var(--falu);justify-self:start}
+.task{display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:10px;align-items:center;padding:8px 8px 8px 10px;border-radius:12px;background:var(--chip)}
+.task input{appearance:none;-webkit-appearance:none;width:26px;height:26px;margin:0;border-radius:7px;border:2px solid var(--patch-line);background:rgba(0,0,0,.25);display:grid;place-items:center;cursor:pointer}
+.task input::after{content:"";width:7px;height:13px;border:solid #FFF;border-width:0 3px 3px 0;transform:translateY(-2px) rotate(45deg) scale(0)}
+.task input:checked{background:var(--falu-hi);border-color:var(--falu-hi)}
+.task input:checked::after{transform:translateY(-2px) rotate(45deg) scale(1)}
+.task.done b{text-decoration:line-through;color:var(--ink-2)}
+
+/* Cash */
+.big{font-family:var(--display);font-stretch:condensed;font-weight:700;font-size:56px;line-height:.9}
+.tr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:12px;border-radius:12px;background:var(--paper);color:var(--paper-ink)}
+.tr b{font-size:17px;overflow-wrap:anywhere}
+.tr span{font-family:var(--display);font-stretch:condensed;font-weight:700;font-size:26px;color:var(--falu)}
+.tr.mine{box-shadow:inset 0 0 0 3px var(--gold)}
+.bal{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;padding:8px 0;border-top:1px solid var(--patch-line)}
+.bal:first-child{border-top:0}
+.pos{color:#9BE6BC}.neg{color:#FF9A8C}
+.exp{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;padding:10px 12px;border-radius:12px;background:var(--chip)}
+.exp b{overflow-wrap:anywhere}.exp small{grid-column:1/-1;color:var(--ink-2);font-size:13px}
+.whoset{display:flex;flex-wrap:wrap;gap:6px}
+
+/* Bottom nav */
+nav.bar{position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(7,20,29,.96);border-top:1px solid var(--patch-line);padding:6px max(10px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(10px,env(safe-area-inset-left,0px))}
+nav.bar .wrap{max-width:560px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+nav.bar a{position:relative;display:grid;justify-items:center;gap:2px;padding:6px 0;min-height:52px;border-radius:12px;text-decoration:none;font-size:12px;font-weight:700;color:var(--ink-2)}
+nav.bar a svg{width:22px;height:22px}
+nav.bar a[aria-current="page"]{color:var(--lamp);background:rgba(255,227,166,.08)}
+nav.bar a .dotn{position:absolute;top:6px;left:calc(50% + 8px);min-width:18px;height:18px;border-radius:9px;background:var(--falu-hi);color:#FFF;font-size:11px;display:grid;place-items:center;padding:0 5px}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="crumple" x="-6%" y="-6%" width="112%" height="112%">
+      <feTurbulence type="fractalNoise" baseFrequency=".010 .016" numOctaves="2" seed="11" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="14" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="creaseLight" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="turbulence" baseFrequency=".0055 .0085" numOctaves="2" seed="4"/>
+      <feDiffuseLighting surfaceScale="9" lighting-color="#FFFFFF"><feDistantLight azimuth="225" elevation="52"/></feDiffuseLighting>
+      <feComponentTransfer><feFuncR type="linear" slope="1.5" intercept="-.14"/><feFuncG type="linear" slope="1.5" intercept="-.14"/><feFuncB type="linear" slope="1.46" intercept="-.15"/></feComponentTransfer>
+    </filter>
+    <linearGradient id="steel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F2F5F7"/><stop offset=".5" stop-color="#9AA6AE"/><stop offset="1" stop-color="#5D6970"/></linearGradient>
+    <symbol id="pinShape" viewBox="0 0 64 20">
+      <path d="M8 10 C8 4 14 3 18 6 L58 8.6" fill="none" stroke="url(#steel)" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M8 10 C8 16 14 17 18 14 L60 11.6" fill="none" stroke="url(#steel)" stroke-width="2.2" stroke-linecap="round"/>
+      <circle cx="9.5" cy="10" r="4.2" fill="none" stroke="url(#steel)" stroke-width="2"/>
+      <rect x="49" y="5.2" width="14" height="9.6" rx="2.4" fill="url(#steel)"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="jacket" id="jacket">
+  <i class="zip" aria-hidden="true"></i><i class="stitch" aria-hidden="true"></i>
+  <canvas id="snow" aria-hidden="true"></canvas>
+  <div class="badge" aria-hidden="true">
+    <svg viewBox="0 0 120 78">
+      <defs><clipPath id="ov"><ellipse cx="60" cy="39" rx="54" ry="33"/></clipPath></defs>
+      <ellipse cx="60" cy="39" rx="58" ry="37" fill="#E9B83A"/>
+      <ellipse cx="60" cy="39" rx="58" ry="37" fill="none" stroke="#7A5A10" stroke-width="1.4" stroke-dasharray="2.2 1.6"/>
+      <g clip-path="url(#ov)"><rect width="120" height="78" fill="#18324A"/><rect y="33" width="120" height="12" fill="#B3271C"/><rect y="31" width="120" height="2" fill="#F3EBD8"/><rect y="45" width="120" height="2" fill="#F3EBD8"/></g>
+      <ellipse cx="60" cy="39" rx="54" ry="33" fill="none" stroke="#F3EBD8" stroke-width="1.2" stroke-dasharray="1.8 1.4"/>
+      <text x="60" y="25" text-anchor="middle" fill="#F3EBD8" font-family="Bahnschrift,'DIN Condensed','Arial Narrow',sans-serif" font-weight="700" font-size="12" letter-spacing="1.6">TOPPBYN</text>
+      <text x="60" y="43" text-anchor="middle" fill="#FFF" font-family="Bahnschrift,'DIN Condensed','Arial Narrow',sans-serif" font-weight="700" font-size="10" letter-spacing="1.2">VALLATEAM</text>
+      <text x="60" y="60" text-anchor="middle" fill="#E9B83A" font-family="Bahnschrift,'DIN Condensed','Arial Narrow',sans-serif" font-weight="700" font-size="9" letter-spacing="1.4">ORSA · 2026</text>
+    </svg>
+  </div>
+  <h1 class="sr">Bäverstigen 55, längdhelg i Orsa Grönklitt 19 till 22 november 2026</h1>
+  <div class="stage">
+    <div class="bib-wrap">
+      <div class="bib" aria-hidden="true">
+        <div class="paper">
+          <svg class="creases" preserveAspectRatio="none"><rect width="100%" height="100%" filter="url(#creaseLight)"/></svg>
+          <div class="bib-top"><span>Orsa<br>Grönklitt</span><span class="num">19–22 nov<br>2026</span></div>
+          <div class="bib-no num">55</div>
+          <div class="bib-name" id="bibName">Bäverstigen</div>
+          <div class="bib-band">
+            <div><b class="num" id="bibRiders">–</b><span>Åkare</span></div>
+            <div><b class="num">3</b><span>Nätter</span></div>
+            <div><b class="num" id="bibDays">–</b><span>Dagar kvar</span></div>
+          </div>
+          <div class="chipstrip"><span>Toppbyn</span><i class="bars"></i></div>
+        </div>
+      </div>
+      <svg class="pin p1" aria-hidden="true"><use href="#pinShape"/></svg><svg class="pin p2" aria-hidden="true"><use href="#pinShape"/></svg>
+      <svg class="pin p3" aria-hidden="true"><use href="#pinShape"/></svg><svg class="pin p4" aria-hidden="true"><use href="#pinShape"/></svg>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="col">
+    <p class="demo" id="demo" hidden>Demoläge. Namnen och siffrorna är exempel och sparas bara i den här webbläsaren.</p>
+    <div id="v-resan" class="view" data-view="resan"></div>
+    <div id="v-maten" class="view" data-view="maten" hidden></div>
+    <div id="v-plats" class="view" data-view="plats" hidden></div>
+    <div id="v-kassan" class="view" data-view="kassan" hidden></div>
+  </div>
+</main>
+
+<p class="toast" id="toast" role="status" aria-live="polite" hidden></p>
+
+<nav class="bar" aria-label="Appens delar">
+  <div class="wrap">
+    <a href="#resan" data-tab="resan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 17h14l-1.5-6.5A2 2 0 0 0 15.6 9H8.4a2 2 0 0 0-1.9 1.5zM5 17v2M19 17v2M7.5 14h.01M16.5 14h.01"/></svg>Resan</a>
+    <a href="#maten" data-tab="maten"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 3v8M5 3v5a2 2 0 0 0 4 0V3M7 11v10M17 21V3c-2 1-3 4-3 8h3"/></svg>Maten</a>
+    <a href="#plats" data-tab="plats"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 11 12 4l9 7M5 10v10h14V10M10 20v-5h4v5"/></svg>På plats</a>
+    <a href="#kassan" data-tab="kassan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M16 15h2"/></svg>Kassan</a>
+  </div>
+</nav>
+
+<script>
+/* =====================================================================
+   Inställningar. Fyll i efter att Google-skriptet är distribuerat.
+   Tomt API = demoläge (exempeldata i den här webbläsaren).
+   ===================================================================== */
+const API = "https://script.google.com/macros/s/AKfycbwOs8-7FRsd36-Jqrh37FwhaH6P2zwooBo8lKAaHKYYwjQD29hVUZKq2NP-gsdTEYpAZQ/exec";
+const CODE = "orsa-26-toppbyn";
+
+(function(){
+"use strict";
+const DEMO = !API;
+const $ = id => document.getElementById(id);
+const REDUCE = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ---------- Helpers ---------- */
+function h(t,a,...kids){const e=document.createElement(t);if(a)for(const n in a){const v=a[n];if(v==null||v===false)continue;
+  if(n==="class")e.className=v;else if(n==="text")e.textContent=v;else if(n==="html")e.innerHTML=v;else if(n.startsWith("on"))e.addEventListener(n.slice(2),v);else e.setAttribute(n,v===true?"":v)}
+  kids.flat(9).forEach(c=>{if(c==null||c===false)return;e.append(c.nodeType?c:document.createTextNode(String(c)))});return e}
+const ls={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const uid=p=>p+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const kr=n=>Math.round(n).toLocaleString("sv-SE")+" kr";
+let toastT=0;function toast(t){const n=$("toast");n.textContent=t;n.hidden=false;clearTimeout(toastT);toastT=setTimeout(()=>n.hidden=true,3200)}
+async function copy(text,okMsg){try{await navigator.clipboard.writeText(text);toast(okMsg||"Kopierat")}catch(e){toast("Appen nekade kopiering. Markera texten och kopiera själv.")}}
+const ARMED=new Map();
+function confirmBtn(label,armedLabel,fn,cls){const b=h("button",{class:cls||"link danger",type:"button",text:label});
+  b.addEventListener("click",()=>{if(ARMED.get(b)){clearTimeout(ARMED.get(b));ARMED.delete(b);fn();return}
+    b.textContent=armedLabel;ARMED.set(b,setTimeout(()=>{ARMED.delete(b);b.textContent=label},3500))});return b}
+
+/* ---------- Trip facts ---------- */
+const TRIP_START=new Date(2026,10,19), TRIP_END=new Date(2026,10,22,12);
+const ARRIVE={tor:{w:"Torsdag",s:"Tor",n:3,first:0},fre:{w:"Fredag",s:"Fre",n:2,first:3},lor:{w:"Lördag",s:"Lör",n:1,first:6}};
+const STATUS={ja:"Med",kanske:"Kanske",nej:"Inte med"};
+const MEALS=[
+  ["tor-middag","tor","19.00","Middag","Ankomstkväll"],
+  ["fre-frukost","fre","08.00","Frukost",""],["fre-lunch","fre","12.30","Lunch i spåret","Termos eller slogbod"],["fre-middag","fre","19.00","Middag","Efter bastun"],
+  ["lor-frukost","lor","08.00","Frukost",""],["lor-lunch","lor","12.30","Lunch i spåret","Termos eller slogbod"],["lor-middag","lor","19.00","Middag","Helgens stora middag"],
+  ["son-frukost","son","08.30","Frukost","Ut ur stugan kl 11"]];
+const DAYNAME={tor:"Torsdag 19 nov",fre:"Fredag 20 nov",lor:"Lördag 21 nov",son:"Söndag 22 nov"};
+const ITEMS=[["kaffe","Kaffe och kaffefilter"],["salt","Salt och peppar"],["olja","Olja och smör"],["krydd","Kryddor"],["disk","Diskmedel och disktrasa"],["papper","Hushållspapper och folie"],
+  ["toa","Toapapper"],["sopp","Soppåsar"],["tand","Tändare och tändpapper till bastun"],["valla","Vallajärn, kork och sickel"],["klister","Klister och fästvalla"],["spel","Kortlek och spel"],["hogt","Högtalare"]];
+const TASKS=[["kyl","Töm kylskåp och frys"],["disk","Diska och ställ in"],["kok","Torka av köket"],["golv","Dammsug och torka golv"],["bastu","Bastun avstängd och vädrad"],["sopor","Sopor till miljöstationen"],["koll","Gå runt och kolla att inget är kvar"],["nyckel","Nycklarna i Check-out 1 före kl 11"]];
+
+/* ---------- Data ---------- */
+const COLLS=["people","items","proposals","votes","cooks","tasks","expenses","places"];
+const S={};COLLS.forEach(c=>S[c]={});
+let me=ls.get("b55me",null), pending=0, loaded=false;
+function seed(){const d={};COLLS.forEach(c=>d[c]={});
+  d.people={a:{name:"Lars",status:"ja",arrive:"tor",car:true,seats:3,from:"Västerås",depart:"15.30"},b:{name:"Rasmus",status:"ja",arrive:"tor",car:false,ride:"a"},
+    c:{name:"Kompis 3",status:"ja",arrive:"fre",car:true,seats:2,from:"Stockholm",depart:"07.00"},d:{name:"Kompis 4",status:"ja",arrive:"fre",car:false},e:{name:"Kompis 5",status:"kanske",arrive:"fre",car:false}};
+  d.items={kaffe:{by:"a"},salt:{by:"b"}};
+  d.proposals={x1:{slot:"lor-middag",dish:"Renskav med mos och lingon",by:"b",at:1},x2:{slot:"lor-middag",dish:"Spaghetti bolognese",by:"a",at:2},x3:{slot:"tor-middag",dish:"Tacos",by:"b",at:3}};
+  d.votes={a:{x1:1,x3:1},b:{x1:1},c:{x2:1}};d.cooks={"lor-middag":{by:"b"}};
+  d.expenses={e1:{what:"Stugan (exempel)",amount:9000,payer:"a",split:["a","b","c","d"],mode:"natter",at:1},e2:{what:"Mat ICA (exempel)",amount:1840,payer:"c",split:["a","b","c","d"],mode:"lika",at:2}};
+  return d}
+function apply(d){COLLS.forEach(c=>S[c]=(d&&d[c])||{});loaded=true;render()}
+async function load(){
+  if(DEMO){let d=ls.get("b55demo",null);if(!d){d=seed();ls.set("b55demo",d)}if(!me||!d.people[me])me=null;apply(d);return}
+  if(pending)return;
+  const r=await fetch(API+"?code="+encodeURIComponent(CODE),{cache:"no-store"});const j=await r.json();
+  if(j.error)throw new Error(j.error);const d={};(j.rows||[]).forEach(x=>{(d[x.c]=d[x.c]||{})[x.i]=x.d});
+  if(pending)return;apply(d)}
+async function put(c,i,data){S[c][i]=data;render();await write({op:"set",c,i,d:data})}
+async function drop(c,i){delete S[c][i];render();await write({op:"del",c,i})}
+async function write(b){if(DEMO){ls.set("b55demo",S);return}
+  pending++;try{const r=await fetch(API,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(Object.assign({code:CODE},b))});
+    const j=await r.json();if(j.error)throw new Error(j.error)}
+  catch(e){toast("Det gick inte att spara. Kontrollera uppkopplingen och försök igen.")}
+  finally{pending--;if(!pending)load().catch(()=>{})}}
+
+/* ---------- Derived ---------- */
+const P=id=>S.people[id];
+const name=id=>(P(id)&&P(id).name)||"Någon";
+const going=()=>Object.entries(S.people).filter(([,p])=>p.status==="ja"||p.status==="kanske");
+const confirmed=()=>Object.entries(S.people).filter(([,p])=>p.status==="ja");
+const nights=id=>{const p=P(id);return p&&ARRIVE[p.arrive]?ARRIVE[p.arrive].n:3};
+const mealIndex=slot=>MEALS.findIndex(m=>m[0]===slot);
+const eaters=slot=>going().filter(([,p])=>p.arrive&&ARRIVE[p.arrive].first<=mealIndex(slot));
+function tally(pid){let up=0,down=0;for(const u in S.votes){const v=S.votes[u]&&S.votes[u][pid];if(v===1)up++;else if(v===-1)down++}return{up,down,net:up-down}}
+function leader(slot){const list=Object.entries(S.proposals).filter(([,p])=>p.slot===slot).map(([id,p])=>({id,p,t:tally(id)}));
+  if(!list.length)return{list,lead:null};list.sort((a,b)=>b.t.net-a.t.net||a.p.at-b.p.at);
+  const top=list[0],tie=list.length>1&&list[1].t.net===top.t.net;return{list,lead:top.t.net>0&&!tie?top:null,tie}}
+function rideOf(id){const p=P(id);if(!p||p.car)return null;const d=p.ride&&P(p.ride);return d&&d.car&&d.arrive===p.arrive&&(d.status==="ja"||d.status==="kanske")?p.ride:null}
+function passengers(driver){return going().filter(([id])=>rideOf(id)===driver).map(([id])=>id)}
+function settle(){const bal={};Object.keys(S.people).forEach(id=>bal[id]=0);let total=0;
+  Object.values(S.expenses).forEach(x=>{const ps=(x.split||[]).filter(id=>P(id));const amt=+x.amount;if(!ps.length||!(amt>0)||!P(x.payer))return;
+    const w=ps.map(id=>x.mode==="natter"?nights(id):1),W=w.reduce((a,b)=>a+b,0);if(!W)return;total+=amt;
+    bal[x.payer]+=amt;ps.forEach((id,k)=>bal[id]-=amt*w[k]/W)});
+  const cr=[],db=[];for(const id in bal){const v=Math.round(bal[id]);if(v>0)cr.push([id,v]);else if(v<0)db.push([id,-v])}
+  cr.sort((a,b)=>b[1]-a[1]);db.sort((a,b)=>b[1]-a[1]);const t=[];let i=0,j=0;
+  while(i<db.length&&j<cr.length){const m=Math.min(db[i][1],cr[j][1]);if(m>0)t.push([db[i][0],cr[j][0],m]);db[i][1]-=m;cr[j][1]-=m;if(db[i][1]<=0)i++;if(cr[j][1]<=0)j++}
+  return{bal,t,total}}
+window.__settle=settle;window.__S=S;
+
+/* ---------- UI state ---------- */
+let tab="resan",editing=false,draft={},ex={};
+const VIEWS=["resan","maten","plats","kassan"];
+function go(t,anchor){tab=VIEWS.includes(t)?t:"resan";try{history.replaceState(null,"","#"+tab)}catch(e){}render();
+  requestAnimationFrame(()=>{const a=anchor&&$(anchor);if(a)a.scrollIntoView({behavior:REDUCE?"auto":"smooth",block:"start"});else if(tab!=="resan")$("v-"+tab).scrollIntoView({block:"start"})})}
+addEventListener("hashchange",()=>{const t=location.hash.slice(1);if(VIEWS.includes(t)&&t!==tab)go(t)});
+
+/* ---------- Render ---------- */
+function snapshot(root){const s={v:{},f:null,sel:null};root.querySelectorAll("input,select").forEach(i=>{if(i.id&&i.type!=="checkbox")s.v[i.id]=i.value});
+  const a=document.activeElement;if(a&&a.id&&root.contains(a)){s.f=a.id;try{s.sel=[a.selectionStart,a.selectionEnd]}catch(e){}}return s}
+function restore(root,s){for(const id in s.v){const i=root.querySelector("#"+CSS.escape(id));if(i&&!i.dataset.fresh)i.value=s.v[id]}
+  if(s.f){const f=$(s.f);if(f){f.focus({preventScroll:true});if(s.sel&&f.setSelectionRange)try{f.setSelectionRange(s.sel[0],s.sel[1])}catch(e){}}}}
+
+function render(){
+  $("demo").hidden=!DEMO;
+  // bib
+  const ja=confirmed().length,ka=going().length-ja;
+  $("bibRiders").textContent=!loaded?"–":(ka?ja+"–"+(ja+ka):String(ja||"–"));
+  $("bibDays").textContent=Math.max(0,Math.ceil((TRIP_START-new Date())/864e5));
+  $("bibName").textContent=me&&P(me)?P(me).name:"Bäverstigen";
+  $("jacket").hidden=tab!=="resan";
+  document.querySelectorAll("nav.bar a").forEach(a=>{const on=a.dataset.tab===tab;if(on)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current")});
+  VIEWS.forEach(v=>{const root=$("v-"+v);root.hidden=v!==tab;if(v!==tab)return;const s=snapshot(root);root.textContent="";
+    ({resan:viewResan,maten:viewMaten,plats:viewPlats,kassan:viewKassan})[v](root);restore(root,s)});
+}
+
+/* ---------- Nu gäller ---------- */
+function nowItems(){const out=[],today=new Date(),before=today<TRIP_START,during=today>=TRIP_START&&today<TRIP_END,after=today>=new Date(2026,10,22);
+  const mp=me&&P(me);
+  if(!mp)out.push(["warn","Välj vem du är","Då kan du svara, ta en bilplats och logga utlägg.",()=>go("resan","who")]);
+  else if(!mp.status||(mp.status!=="nej"&&!mp.arrive))out.push(["warn","Svara om du är med och vilken dag du åker","Det styr samåkningen och hur kostnaderna delas.",()=>{editing=true;go("resan","who")}]);
+  if(after||during){const {t}=settle();const mine=t.filter(x=>x[0]===me||x[1]===me);
+    mine.forEach(([a,b,m])=>out.push(["warn",a===me?"Swisha "+name(b)+" "+kr(m):name(a)+" ska swisha dig "+kr(m),"Uträknat från alla utlägg i kassan.",()=>go("kassan")]));
+    if(after&&!mine.length&&me)out.push(["ok","Du är kvitt","Inga överföringar behövs för din del.",()=>go("kassan")])}
+  if(during){const k=["tor","fre","lor","son"][Math.min(3,Math.floor((today-TRIP_START)/864e5))];
+    MEALS.filter(m=>m[1]===k&&m[3]!=="Frukost").forEach(m=>{const L=leader(m[0]),c=S.cooks[m[0]];
+      out.push([L.lead?"ok":"warn","Idag "+m[2]+": "+(L.lead?L.lead.p.dish:"inget bestämt"),c?"Kock: "+name(c.by):"Ingen kock än",()=>go("maten","m-"+m[0])])})}
+  if(before){
+    const unanswered=Object.entries(S.people).filter(([,p])=>!p.status||(p.status!=="nej"&&!p.arrive)).map(([id])=>name(id));
+    if(unanswered.length)out.push(["warn",unanswered.length+(unanswered.length===1?" har inte svarat":" har inte svarat"),unanswered.join(", "),()=>go("resan","people")]);
+    const noRide=going().filter(([id,p])=>p.arrive&&!p.car&&!rideOf(id)).map(([id])=>name(id));
+    if(noRide.length)out.push(["warn",noRide.length===1?noRide[0]+" saknar skjuts":noRide.length+" saknar skjuts",noRide.length>1?noRide.join(", "):"Ta en ledig plats i någon bil.",()=>go("resan","rides")]);
+    const open=allItems().filter(x=>!x.by).length;
+    if(open)out.push(["warn",open+(open===1?" sak att ta med saknar någon":" saker att ta med saknar någon"),"Kaffefilter, salt och sånt ingen vill köpa.",()=>go("resan","items")]);
+    const noCook=MEALS.filter(m=>m[3]==="Middag"&&!S.cooks[m[0]]).length;
+    if(noCook)out.push(["warn",noCook+(noCook===1?" middag saknar kock":" middagar saknar kock"),"Rösta fram rätten och ta på dig en kväll.",()=>go("maten")]);
+  }
+  if(!out.length)out.push(["ok","Allt är klart just nu","Inget väntar på dig.",null]);
+  return out.slice(0,4)}
+
+/* ---------- RESAN ---------- */
+function viewResan(root){
+  root.append(h("section",{class:"now","aria-labelledby":"nowH"},
+    h("div",null,h("p",{class:"eyebrow",id:"nowH"},"Nu gäller")),
+    h("div",{class:"patch"},h("ul",{class:"list now"},nowItems().map(([k,t,s,fn])=>h("li",null,h("i",{class:k==="ok"?"ok":null}),h("div",null,h("b",null,t),h("small",null,s)),fn?h("button",{class:"btn ghost small",type:"button",onclick:fn},"Gå dit"):h("span")))))));
+  root.append(whoSection(),peopleSection(),ridesSection(),itemsSection());
+}
+function whoSection(){
+  const sec=h("section",{id:"who","aria-labelledby":"whoH"});
+  if(!me||!P(me)){
+    sec.append(h("div",null,h("p",{class:"eyebrow"},"Först"),h("h2",{id:"whoH"},"Vem är du?")));
+    const p=h("div",{class:"patch"});
+    const names=Object.entries(S.people).sort((a,b)=>a[1].name.localeCompare(b[1].name,"sv"));
+    if(names.length)p.append(h("div",{class:"whochips"},names.map(([id,x])=>h("button",{class:"btn ghost",type:"button",onclick:()=>{me=id;ls.set("b55me",id);editing=!x.arrive;render()}},x.name))));
+    const f=h("form",{class:"add"},h("input",{type:"text",id:"newName",maxlength:"24",placeholder:"Inte med i listan? Skriv ditt namn","aria-label":"Ditt namn",autocomplete:"given-name"}),h("button",{class:"btn",type:"submit"},"Lägg till mig"));
+    f.addEventListener("submit",e=>{e.preventDefault();const i=$("newName"),v=i.value.trim();if(!v)return;i.value="";const id=uid("p");me=id;ls.set("b55me",id);editing=true;put("people",id,{name:v,status:"ja",car:false})});
+    p.append(f);sec.append(p);return sec}
+  const mp=P(me);
+  sec.append(h("div",{class:"row between"},h("div",null,h("p",{class:"eyebrow"},"Du"),h("h2",{id:"whoH"},mp.name)),
+    h("button",{class:"link",type:"button",onclick:()=>{me=null;ls.set("b55me",null);editing=false;render()}},"Byt person")));
+  if(!editing){
+    sec.append(h("div",{class:"patch"},
+      h("div",{class:"row"},pillFor(mp),mp.arrive?h("span",{class:"pill"},"Åker "+ARRIVE[mp.arrive].w.toLowerCase()):h("span",{class:"pill warn"},"Ingen dag vald"),
+        h("span",{class:"pill"},mp.car?"Bil, "+(mp.seats||0)+" lediga platser":"Ingen bil")),
+      mp.car&&(mp.from||mp.depart)?h("p",{class:"note"},[mp.from&&"Från "+mp.from,mp.depart&&"avgång "+mp.depart].filter(Boolean).join(", ")):null,
+      h("button",{class:"btn ghost",type:"button",onclick:()=>{editing=true;draft={};render()}},"Ändra mina svar")));
+    return sec}
+  // edit form
+  const d=draft;["status","arrive","car","seats"].forEach(k=>{if(!(k in d))d[k]=mp[k]});if(d.status==null)d.status="ja";if(d.car==null)d.car=false;if(d.seats==null)d.seats=3;
+  const seg=(key,opts)=>h("div",{class:"seg",role:"group"},opts.map(([v,l])=>h("button",{type:"button","aria-pressed":String(d[key]===v),onclick:()=>{d[key]=v;render()}},l)));
+  const f=h("form",{class:"form patch"},
+    h("label",{class:"f"},"Är du med?",seg("status",[["ja","Ja"],["kanske","Kanske"],["nej","Nej"]])),
+    d.status!=="nej"?h("label",{class:"f"},"Vilken dag åker du upp?",seg("arrive",[["tor","Torsdag"],["fre","Fredag"],["lor","Lördag"]])):null,
+    d.status!=="nej"?h("label",{class:"f"},"Kör du bil?",seg("car",[[true,"Ja, jag kör"],[false,"Nej, behöver skjuts"]])):null,
+    d.status!=="nej"&&d.car?h("div",{class:"two"},
+      h("label",{class:"f"},"Lediga platser",h("input",{type:"number",id:"edSeats",min:"0",max:"8",inputmode:"numeric",value:String(d.seats)})),
+      h("label",{class:"f"},"Avgång",h("input",{type:"text",id:"edDepart",maxlength:"12",placeholder:"t.ex. 15.30",value:mp.depart||""}))):null,
+    d.status!=="nej"&&d.car?h("label",{class:"f"},"Åker från",h("input",{type:"text",id:"edFrom",maxlength:"40",placeholder:"t.ex. Västerås",value:mp.from||""})):null,
+    h("div",{class:"row"},h("button",{class:"btn",type:"submit"},"Spara"),h("button",{class:"btn ghost",type:"button",onclick:()=>{editing=false;draft={};render()}},"Avbryt")));
+  f.addEventListener("submit",e=>{e.preventDefault();
+    if(d.status!=="nej"&&!d.arrive){toast("Välj vilken dag du åker upp.");return}
+    const n=Object.assign({},mp,{status:d.status,arrive:d.status==="nej"?null:d.arrive,car:d.status!=="nej"&&!!d.car});
+    if(n.car){n.seats=Math.max(0,Math.min(8,parseInt(($("edSeats")||{}).value,10)||0));n.depart=(($("edDepart")||{}).value||"").trim();n.from=(($("edFrom")||{}).value||"").trim();n.ride=null}
+    if(n.arrive!==mp.arrive&&!n.car)n.ride=null;
+    editing=false;draft={};put("people",me,n);toast("Dina svar är sparade")});
+  sec.append(f);return sec}
+function pillFor(p){return h("span",{class:"pill "+(p.status||"")},p.status?STATUS[p.status]:"Inte svarat")}
+
+function peopleSection(){
+  const list=Object.entries(S.people).sort((a,b)=>({ja:0,kanske:1,undefined:2,nej:3}[a[1].status]??2)-({ja:0,kanske:1,undefined:2,nej:3}[b[1].status]??2)||a[1].name.localeCompare(b[1].name,"sv"));
+  const by={tor:0,fre:0,lor:0};going().forEach(([,p])=>{if(p.arrive)by[p.arrive]++});
+  return h("section",{id:"people","aria-labelledby":"pplH"},
+    h("div",null,h("p",{class:"eyebrow"},"Åkarna"),h("h2",{id:"pplH"},"Vem kommer när"),
+      h("p",{class:"lead"},by.tor+" kommer torsdag, "+by.fre+" fredag"+(by.lor?", "+by.lor+" lördag":"")+". Stugans kostnad kan fördelas efter antal nätter.")),
+    list.length?h("ul",{class:"list"},list.map(([id,p])=>h("li",{class:"person"+(id===me?" me":"")},
+      h("b",null,p.name+(id===me?" (du)":"")),pillFor(p),
+      h("div",{class:"meta"},p.arrive&&p.status!=="nej"?h("span",{class:"pill"},ARRIVE[p.arrive].w+", "+ARRIVE[p.arrive].n+(ARRIVE[p.arrive].n===1?" natt":" nätter")):null,
+        p.status!=="nej"&&p.car?h("span",{class:"pill"},"Kör, "+(p.seats||0)+" platser"):null,
+        p.status!=="nej"&&!p.car&&p.arrive?(rideOf(id)?h("span",{class:"pill"},"Åker med "+name(rideOf(id))):h("span",{class:"pill warn"},"Saknar skjuts")):null)))):
+      h("p",{class:"note"},"Ingen har lagt in sig än. Börja med dig själv ovanför."))}
+
+function ridesSection(){
+  const sec=h("section",{id:"rides","aria-labelledby":"rideH"},
+    h("div",null,h("p",{class:"eyebrow"},"Samåkning"),h("h2",{id:"rideH"},"Bilarna"),
+      h("p",{class:"lead"},"Västerås till Grönklitt är ungefär 24 mil, runt tre timmar plus fika. Det är mörkt från fyra och kan vara halt sista biten. Hem på söndag åker vi som vi kom, om inget annat sägs.")));
+  const mp=me&&P(me);
+  ["tor","fre","lor"].forEach(day=>{
+    const cars=going().filter(([,p])=>p.car&&p.arrive===day),need=going().filter(([id,p])=>p.arrive===day&&!p.car&&!rideOf(id));
+    if(!cars.length&&!need.length)return;
+    const free=cars.reduce((a,[id,p])=>a+Math.max(0,(p.seats||0)-passengers(id).length),0);
+    const box=h("div",{class:"patch"},h("div",{class:"dayhead"},h("h3",null,ARRIVE[day].w),h("span",{class:"note num"},cars.length+(cars.length===1?" bil, ":" bilar, ")+free+" lediga platser")));
+    cars.forEach(([did,dp])=>{const pas=passengers(did),seats=[];
+      seats.push(h("div",{class:"seat driver"},dp.name+" kör"));
+      pas.forEach(pid=>seats.push(h("div",{class:"seat taken"},name(pid))));
+      const canTake=mp&&!mp.car&&mp.arrive===day&&(mp.status==="ja"||mp.status==="kanske")&&rideOf(me)!==did;
+      for(let k=pas.length;k<(dp.seats||0);k++)seats.push(canTake?h("button",{class:"seat free",type:"button",onclick:()=>{put("people",me,Object.assign({},mp,{ride:did}));toast("Du åker med "+dp.name)}},"Ta platsen"):h("div",{class:"seat free"},"Ledig"));
+      box.append(h("div",{class:"car"},
+        h("div",{class:"row between"},h("b",null,(/[sxz]$/i.test(dp.name)?dp.name:dp.name+"s")+" bil"),h("span",{class:"note"},[dp.from&&"Från "+dp.from,dp.depart&&"kl "+dp.depart].filter(Boolean).join(", ")||"Tid ej satt")),
+        h("div",{class:"seats"},seats),
+        rideOf(me)===did?h("button",{class:"link",type:"button",onclick:()=>{put("people",me,Object.assign({},mp,{ride:null}));toast("Du har lämnat platsen")}},"Lämna min plats"):null))});
+    if(need.length)box.append(h("p",{class:"note"},h("span",{class:"pill warn"},"Saknar skjuts")," ",need.map(([id])=>name(id)).join(", ")));
+    if(!cars.length)box.append(h("p",{class:"note"},"Ingen kör "+ARRIVE[day].w.toLowerCase()+" än. Har du bil? Ändra dina svar."));
+    sec.append(box)});
+  if(sec.childNodes.length===1)sec.append(h("p",{class:"note"},"När folk har svarat vilken dag de åker och om de kör dyker bilarna upp här."));
+  return sec}
+
+function allItems(){const out=ITEMS.map(([id,n])=>({id,name:n,by:S.items[id]&&S.items[id].by,custom:false}));
+  Object.entries(S.items).forEach(([id,x])=>{if(x.custom)out.push({id,name:x.name,by:x.by,custom:true})});return out}
+function itemsSection(){
+  const items=allItems(),open=items.filter(x=>!x.by).length;
+  const ul=h("ul",{class:"list"},items.sort((a,b)=>(!!a.by)-(!!b.by)).map(x=>{const mine=x.by===me;
+    return h("li",{class:"item"+(x.by?"":" open")},
+      h("div",null,h("b",null,x.name),h("small",null,x.by?(mine?"Du tar med":name(x.by)+" tar med"):"Ingen än")),
+      h("div",{class:"row"},
+        me&&!x.by?h("button",{class:"btn small",type:"button",onclick:()=>put("items",x.id,Object.assign({},S.items[x.id]||{},x.custom?{name:x.name,custom:true}:{},{by:me}))},"Jag tar det"):null,
+        mine?h("button",{class:"btn ghost small",type:"button",onclick:()=>{const o=Object.assign({},S.items[x.id]);o.by=null;if(x.custom||o.name)put("items",x.id,o);else drop("items",x.id)}},"Släpp"):null,
+        x.custom&&me&&(!x.by||mine)?confirmBtn("Ta bort","Tryck igen",()=>drop("items",x.id)):null))}));
+  const f=h("form",{class:"add"},h("input",{type:"text",id:"newItem",maxlength:"60",placeholder:"Lägg till något mer","aria-label":"Lägg till något att ta med"}),h("button",{class:"btn",type:"submit",disabled:!me},"Lägg till"));
+  f.addEventListener("submit",e=>{e.preventDefault();const i=$("newItem"),v=i.value.trim();if(!v||!me)return;i.value="";put("items",uid("i"),{name:v,custom:true,by:null})});
+  return h("section",{id:"items","aria-labelledby":"itemH"},
+    h("div",null,h("p",{class:"eyebrow"},"Ta med"),h("h2",{id:"itemH"},"Sånt ingen vill köpa"),
+      h("p",{class:"lead"},open?open+" av "+items.length+" saknar någon som tar med. Ta det du redan har hemma.":"Alla saker har någon som tar med.")),
+    ul,f)}
+
+/* ---------- MATEN ---------- */
+const TH='<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M2 10h4v11H2zM8 21V10l4.6-7.4c.5-.8 1.5-1.1 2.3-.6.7.4 1 1.2.8 2L14.6 9H20c1.3 0 2.2 1.2 1.9 2.4l-2 8C19.7 20.4 18.9 21 18 21z"/></svg>';
+function viewMaten(root){
+  const lines=["Meny Bäverstigen 55, 19–22 nov"];
+  root.append(h("div",{class:"view-head"},h("p",{class:"eyebrow"},"Maten"),h("h2",null,"Vad blir det?"),
+    h("p",{class:"lead"},"Föreslå och rösta. Rätten med flest röster vinner, och den som är kock handlar till den. Antalet ätare räknas från vem som är på plats.")));
+  ["tor","fre","lor","son"].forEach(day=>{
+    const sec=h("section",{"aria-label":DAYNAME[day]},h("div",{class:"dayhead"},h("h3",{style:"font-family:var(--display);font-stretch:condensed;font-size:30px;text-transform:uppercase"},DAYNAME[day])));
+    MEALS.filter(m=>m[1]===day).forEach(([slot,,time,label,note])=>{
+      const L=leader(slot),cook=S.cooks[slot],n=eaters(slot).length,mine=(me&&S.votes[me])||{};
+      lines.push(DAYNAME[day].split(" ")[0]+" "+label.toLowerCase()+": "+(L.lead?L.lead.p.dish:"–")+(cook?" (kock "+name(cook.by)+")":""));
+      const card=h("div",{class:"meal",id:"m-"+slot},
+        h("div",{class:"meal-top"},h("span",{class:"t num"},time),h("h3",null,label),h("span",{class:"pill num"},n+(n===1?" äter":" äter"))),
+        note?h("p",{class:"note"},note):null);
+      if(L.list.length)card.append(h("ul",{class:"list"},L.list.map(({id,p,t})=>h("li",{class:"prop"+(L.lead&&L.lead.id===id?" lead":"")},
+        h("div",null,h("b",null,p.dish),h("small",null,(L.lead&&L.lead.id===id?"Leder · ":"")+"Förslag från "+name(p.by))),
+        ...[["up",1,"Tumme upp",t.up],["down",-1,"Tumme ned",t.down]].map(([k,v,lbl,c])=>{const b=h("button",{class:"vote "+k,type:"button",disabled:!me,"aria-pressed":String(mine[id]===v),"aria-label":lbl+" för "+p.dish+", "+c+" röster",html:k==="up"?TH:TH.replace('aria-hidden="true"','aria-hidden="true" style="transform:rotate(180deg)"')});
+          b.append(h("span",{class:"num"},String(c)));b.addEventListener("click",()=>{const cur=Object.assign({},S.votes[me]||{});if(cur[id]===v)delete cur[id];else cur[id]=v;put("votes",me,cur)});return b})))));
+      else card.append(h("p",{class:"note"},"Inga förslag än."));
+      const own=L.list.filter(x=>x.p.by===me);
+      if(own.length)card.append(h("div",{class:"row"},own.map(x=>confirmBtn("Ta bort "+x.p.dish,"Tryck igen för att ta bort",()=>drop("proposals",x.id)))));
+      if(me){const f=h("form",{class:"add"},h("input",{type:"text",id:"in-"+slot,maxlength:"70",placeholder:"Föreslå "+label.toLowerCase(),"aria-label":"Föreslå "+label.toLowerCase()}),h("button",{class:"btn",type:"submit"},"Föreslå"));
+        f.addEventListener("submit",e=>{e.preventDefault();const i=$("in-"+slot),v=i.value.trim();if(!v)return;i.value="";put("proposals",uid("x"),{slot,dish:v,by:me,at:Date.now()});toast(v+" är föreslaget")});card.append(f)}
+      card.append(h("div",{class:"row between"},h("span",{class:"note"},cook?"Kock: "+(cook.by===me?"du":name(cook.by)):"Ingen kock än"),
+        me&&!cook?h("button",{class:"btn ghost small",type:"button",onclick:()=>put("cooks",slot,{by:me})},"Jag lagar"):null,
+        cook&&cook.by===me?h("button",{class:"link",type:"button",onclick:()=>drop("cooks",slot)},"Släpp kocken"):null));
+      sec.append(card)});
+    root.append(sec)});
+  if(!me)root.append(h("p",{class:"note"},"Välj vem du är under Resan för att föreslå och rösta."));
+  root.append(h("button",{class:"btn ghost",type:"button",onclick:()=>copy(lines.join("\n"),"Menyn är kopierad")},"Kopiera menyn till gruppchatten"));
+}
+
+/* ---------- PÅ PLATS ---------- */
+function viewPlats(root){
+  const toOpen=Math.ceil((new Date(2026,9,24,6)-new Date())/864e5);
+  root.append(h("div",{class:"view-head"},h("p",{class:"eyebrow"},"På plats"),h("h2",null,"Spåren och stugan")));
+  root.append(h("section",{"aria-labelledby":"trH"},h("h3",{id:"trH",class:"sr"},"Spårläget"),
+    h("div",{class:"patch"},h("div",{class:"row"},h("span",{class:"pill "+(toOpen>0?"warn":"ja")},toOpen>0?"Öppnar om "+toOpen+" dagar":"Spåren är öppna sedan 24 okt")),
+      h("div",{class:"row",style:"align-items:flex-end"},h("div",{class:"km num","aria-label":"1,3 kilometer"},"1,3",h("sup",null,"km")),
+        h("p",{class:"note grow",style:"min-width:180px"},"Spår på sparad snö från 24 oktober, målet var 6 km under vecka 44. Resten av de 145 km öppnar när natursnön räcker.")),
+      h("a",{class:"btn ghost",href:"https://www.orsagronklitt.se/skidaakning/laengdskidaakning/spaarinformation-och-vallatips",target:"_blank",rel:"noopener"},"Dagens spårstatus hos Grönklitt")),
+    h("div",{class:"patch chart"},h("h3",null,"Fästvalla efter temperatur"),h("div",{html:waxChart()}),h("p",{class:"note"},"Det ljusa fältet är det normala spannet i slutet av november, ungefär −10 till +2 °C."))));
+  // restaurants
+  const places=Object.entries(S.places).sort((a,b)=>b[1].at-a[1].at);
+  const pf=h("form",{class:"form"},h("input",{type:"text",id:"plName",maxlength:"50",placeholder:"Ställe, t.ex. pizzerian i Orsa","aria-label":"Restaurang"}),
+    h("input",{type:"text",id:"plNote",maxlength:"80",placeholder:"Öppettider eller kommentar","aria-label":"Öppettider eller kommentar"}),
+    h("div",{class:"row"},h("button",{class:"btn",type:"submit",value:"open",disabled:!me},"Öppet"),h("button",{class:"btn ghost",type:"submit",value:"closed",disabled:!me},"Stängt")));
+  pf.addEventListener("submit",e=>{e.preventDefault();const n=$("plName").value.trim();if(!n)return;const open=!(e.submitter&&e.submitter.value==="closed");
+    put("places",uid("r"),{name:n,note:$("plNote").value.trim(),open,by:me,at:Date.now()});$("plName").value="";$("plNote").value=""});
+  root.append(h("section",{"aria-labelledby":"rsH"},h("div",null,h("h3",{id:"rsH"},"Restauranger"),
+      h("p",{class:"note"},"I november är det mesta i backen stängt. Ring och kolla innan, och lägg in vad du fick veta.")),
+    places.length?h("ul",{class:"list"},places.map(([id,x])=>h("li",{class:"exp"},h("b",null,x.name),h("span",{class:"pill "+(x.open?"ja":"nej")},x.open?"Öppet":"Stängt"),
+      h("small",null,[x.note,"kollat av "+name(x.by)+" "+new Date(x.at).toLocaleDateString("sv-SE",{day:"numeric",month:"short"})].filter(Boolean).join(" · "))))):
+      h("p",{class:"note"},"Ingen har kollat än."),
+    h("div",{class:"patch"},pf)));
+  root.append(h("section",{"aria-labelledby":"stH"},h("h3",{id:"stH"},"Stugan"),
+    h("div",{class:"facts"},[["Bastu","Finns i stugan"],["Vallabod","För skidorna"],["Torkskåp","Plus pjäxtork"],["Kök","Diskmaskin, kaffebryggare"],["Elbil","Laddning och motorvärmare"],["Wifi","Koden står i pärmen"]].map(([b,s])=>h("div",{class:"fact"},h("b",null,b),h("span",null,s)))),
+    h("a",{class:"btn ghost",href:"https://stuginfo.orsagronklitt.se/baverstigen-55/",target:"_blank",rel:"noopener"},"Stuginfo hos Grönklitt")));
+  root.append(h("section",{class:"jour","aria-labelledby":"jH"},h("p",{id:"jH"},"Jourtelefon vid akuta fel på el eller värme"),
+    h("a",{class:"tel num",href:"tel:+46703449311"},"070-344 93 11"),h("button",{class:"btn",type:"button",onclick:()=>copy("070-344 93 11","Numret är kopierat")},"Kopiera numret")));
+  // departure
+  const done=TASKS.filter(([id])=>S.tasks[id]&&S.tasks[id].done).length;
+  root.append(h("section",{id:"avfard","aria-labelledby":"avH"},h("div",null,h("p",{class:"eyebrow"},"Söndag"),h("h2",{id:"avH"},"Avfärd"),
+      h("p",{class:"lead"},"Ut kl 11, eller kl 10 om avresestädning är bokad. "+done+" av "+TASKS.length+" klara.")),
+    h("ul",{class:"list"},TASKS.map(([id,t])=>{const x=S.tasks[id]||{};
+      const cb=h("input",{type:"checkbox",id:"t-"+id,"aria-label":t});cb.checked=!!x.done;cb.disabled=!me;
+      cb.addEventListener("change",()=>put("tasks",id,Object.assign({},x,{done:cb.checked})));
+      return h("li",{class:"task"+(x.done?" done":"")},cb,h("label",{for:"t-"+id},h("b",null,t),h("span",{class:"note",style:"display:block"},x.by?(x.by===me?"Du":name(x.by)):"Ingen ansvarig")),
+        me&&!x.by?h("button",{class:"btn ghost small",type:"button",onclick:()=>put("tasks",id,Object.assign({},x,{by:me}))},"Jag tar det"):
+        x.by===me?h("button",{class:"link",type:"button",onclick:()=>put("tasks",id,Object.assign({},x,{by:null}))},"Släpp"):h("span"))}))));
+}
+function waxChart(){const W=340,L=62,R=14,T=8,min=-20,max=3,x=v=>L+(v-min)/(max-min)*(W-L-R);
+  const rows=[["Grön","#2E8B57",-20,-10],["Blå","#3A6FD0",-10,-2],["Violett","#8A63C4",-3,0],["Klister","#D2453A",-1,3]];
+  let s='<svg viewBox="0 0 '+W+' 176" role="img" aria-label="Fästvalla: grön −20 till −10 grader, blå −10 till −2, violett −3 till 0, klister −1 till plus 3.">';
+  s+='<rect x="'+x(-10)+'" y="'+T+'" width="'+(x(2)-x(-10))+'" height="'+(rows.length*34)+'" fill="rgba(255,227,166,.10)" rx="4"/>';
+  [-20,-15,-10,-5,0].forEach(v=>{s+='<line x1="'+x(v)+'" x2="'+x(v)+'" y1="'+T+'" y2="'+(T+rows.length*34)+'" stroke="rgba(170,205,225,.16)"/>'});
+  rows.forEach(([n,c,a,b],i)=>{const y=T+i*34+7;s+='<text class="lbl" x="0" y="'+(y+15)+'">'+n+'</text><rect x="'+x(a)+'" y="'+y+'" width="'+(x(b)-x(a))+'" height="20" rx="5" fill="'+c+'"/>'});
+  const ay=T+rows.length*34+18;[-20,-15,-10,-5,0,3].forEach(v=>{s+='<text x="'+x(v)+'" y="'+ay+'" text-anchor="middle">'+(v>0?"+":v<0?"−":"")+Math.abs(v)+'°</text>'});
+  return s+"</svg>"}
+
+/* ---------- KASSAN ---------- */
+function viewKassan(root){
+  const {bal,t,total}=settle(),inTrip=going().map(([id])=>id);
+  root.append(h("div",{class:"view-head"},h("p",{class:"eyebrow"},"Kassan"),h("h2",null,"Get even Steven"),
+    h("p",{class:"lead"},"Logga allt du lägger ut. Appen räknar fram det minsta antalet Swish som gör alla kvitt.")));
+  root.append(h("section",{"aria-labelledby":"setH"},h("div",{class:"row between",style:"align-items:flex-end"},h("div",null,h("h3",{id:"setH"},"Gör upp"),h("p",{class:"note"},"Totalt utlagt")),h("div",{class:"big num"},kr(total))),
+    t.length?h("ul",{class:"list"},t.map(([a,b,m])=>h("li",{class:"tr"+(a===me||b===me?" mine":"")},h("b",null,name(a)+" swishar "+name(b)),h("span",{class:"num"},kr(m))))):
+      h("p",{class:"note"},total?"Alla är kvitt.":"Inga utlägg än."),
+    t.length?h("button",{class:"btn ghost",type:"button",onclick:()=>copy(["Gör upp Bäverstigen 55:"].concat(t.map(([a,b,m])=>name(a)+" swishar "+name(b)+" "+kr(m))).join("\n"),"Listan är kopierad")},"Kopiera till gruppchatten"):null));
+  // add expense
+  const sec=h("section",{"aria-labelledby":"addH"},h("h3",{id:"addH"},"Nytt utlägg"));
+  if(!me)sec.append(h("p",{class:"note"},"Välj vem du är under Resan för att logga utlägg."));
+  else{
+    const draft=ex;if(!draft.split)draft.split=inTrip.slice();if(!draft.payer||!P(draft.payer))draft.payer=me;if(!draft.mode)draft.mode="lika";
+    const f=h("form",{class:"form patch"},
+      h("div",{class:"two"},h("label",{class:"f"},"Vad",h("input",{type:"text",id:"exWhat",maxlength:"50",placeholder:"t.ex. Maten ICA"})),
+        h("label",{class:"f"},"Belopp i kr",h("input",{type:"text",id:"exAmt",inputmode:"decimal",placeholder:"0"}))),
+      h("label",{class:"f"},"Betalt av",h("select",{id:"exPayer",onchange:e=>draft.payer=e.target.value},Object.entries(S.people).map(([id,p])=>{const o=h("option",{value:id},p.name);if(id===draft.payer)o.selected=true;return o}))),
+      h("div",{class:"f"},h("span",null,"Delas av"),h("div",{class:"whoset"},Object.entries(S.people).filter(([,p])=>p.status!=="nej").map(([id,p])=>h("button",{type:"button",class:"btn small "+(draft.split.includes(id)?"":"ghost"),"aria-pressed":String(draft.split.includes(id)),
+        onclick:()=>{draft.split=draft.split.includes(id)?draft.split.filter(x=>x!==id):draft.split.concat(id);render()}},p.name)))),
+      h("div",{class:"f"},h("span",null,"Fördelning"),h("div",{class:"seg"},[["lika","Lika delar"],["natter","Efter antal nätter"]].map(([v,l])=>h("button",{type:"button","aria-pressed":String(draft.mode===v),onclick:()=>{draft.mode=v;render()}},l)))),
+      draft.mode==="natter"?h("p",{class:"note"},"Bra för stugan: den som kommer fredag betalar för två nätter i stället för tre."):null,
+      h("button",{class:"btn",type:"submit"},"Lägg till utlägget"));
+    f.addEventListener("submit",e=>{e.preventDefault();const what=$("exWhat").value.trim(),amt=parseFloat($("exAmt").value.replace(/\s/g,"").replace(",","."));
+      if(!what){toast("Skriv vad utlägget gällde.");$("exWhat").focus();return}
+      if(!(amt>0)){toast("Skriv ett belopp större än noll, till exempel 1250.");$("exAmt").focus();return}
+      if(!draft.split.length){toast("Välj minst en person som delar på utlägget.");return}
+      put("expenses",uid("e"),{what,amount:Math.round(amt*100)/100,payer:draft.payer,split:draft.split.slice(),mode:draft.mode,by:me,at:Date.now()});
+      $("exWhat").value="";$("exAmt").value="";ex={};toast(what+" är tillagt")});
+    sec.append(f)}
+  root.append(sec);
+  // balances
+  const people=Object.keys(bal).filter(id=>Math.abs(bal[id])>=.5||Object.values(S.expenses).some(x=>x.payer===id||(x.split||[]).includes(id)));
+  if(people.length)root.append(h("section",{"aria-labelledby":"balH"},h("h3",{id:"balH"},"Saldo per person"),
+    h("div",{class:"patch"},h("ul",{class:"list"},people.sort((a,b)=>bal[b]-bal[a]).map(id=>h("li",{class:"bal"},h("span",null,name(id)),h("b",{class:"num "+(bal[id]>=0?"pos":"neg")},(bal[id]>=.5?"+":"")+kr(bal[id]))))))));
+  const exps=Object.entries(S.expenses).sort((a,b)=>b[1].at-a[1].at);
+  root.append(h("section",{"aria-labelledby":"exH"},h("h3",{id:"exH"},"Alla utlägg"),
+    exps.length?h("ul",{class:"list"},exps.map(([id,x])=>h("li",{class:"exp"},h("b",null,x.what),h("b",{class:"num"},kr(x.amount)),
+      h("small",null,name(x.payer)+" betalade · delas av "+(x.split||[]).map(name).join(", ")+(x.mode==="natter"?" · efter nätter":"")),
+      me&&(x.by===me||x.payer===me)?h("div",{style:"grid-column:1/-1"},confirmBtn("Ta bort","Tryck igen för att ta bort",()=>drop("expenses",id))):null))):
+      h("p",{class:"note"},"Inga utlägg än. Stugan, maten och bensinen brukar vara de stora.")));
+}
+
+/* ---------- Snow ---------- */
+(function(){const c=$("snow"),x=c.getContext("2d");let W=0,H=0,fl=[],run=true;
+  function size(){const dpr=Math.min(devicePixelRatio||1,2);W=c.clientWidth;H=c.clientHeight;if(!W||!H)return;c.width=W*dpr;c.height=H*dpr;x.setTransform(dpr,0,0,dpr,0,0);
+    fl=Array.from({length:Math.round(W*H/9000)},()=>({x:Math.random()*W,y:Math.random()*H,r:.6+Math.random()*2.2,s:.25+Math.random()*.7,p:Math.random()*6}))}
+  function draw(t){x.clearRect(0,0,W,H);x.fillStyle="#FFF";for(const f of fl){if(!REDUCE){f.y+=f.s*f.r*.6;f.x+=Math.sin(t*.0006+f.p)*.25;if(f.y>H+4){f.y=-4;f.x=Math.random()*W}}
+    x.globalAlpha=Math.min(1,.25+f.r/3);x.beginPath();x.arc(f.x,f.y,f.r,0,6.283);x.fill()}x.globalAlpha=1;if(run&&!REDUCE)requestAnimationFrame(draw)}
+  addEventListener("resize",size);size();requestAnimationFrame(draw);
+  if("IntersectionObserver" in window)new IntersectionObserver(es=>{const v=es[0].isIntersecting;if(v&&!run){run=true;requestAnimationFrame(draw)}else run=v}).observe($("jacket"));
+  document.addEventListener("visibilitychange",()=>{if(document.hidden)run=false;else if(!run){run=true;size();requestAnimationFrame(draw)}});
+})();
+
+/* ---------- Start ---------- */
+document.querySelectorAll("nav.bar a").forEach(a=>a.addEventListener("click",e=>{e.preventDefault();go(a.dataset.tab);scrollTo(0,0)}));
+const startTab=location.hash.slice(1);if(VIEWS.includes(startTab))tab=startTab;
+render();
+load().catch(()=>toast("Kunde inte hämta resan. Kontrollera uppkopplingen och ladda om sidan."));
+if(!DEMO){setInterval(()=>{if(!document.hidden)load().catch(()=>{})},30000);document.addEventListener("visibilitychange",()=>{if(!document.hidden)load().catch(()=>{})})}
+})();
+</script>
+
+</body>
+</html>
