@@ -9,16 +9,16 @@
 <body>
 
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="theme-color" content="#0A1D2B">
+<meta name="theme-color" content="#1C1D1F">
 <style>
 /* Layout: the page is the chest of a ski shell at dusk. A crumpled bib is pinned over the zipper;
    everything else is stitched-on patches. Four tabs: Resan, Maten, På plats, Kassan. */
 :root{
   color-scheme:dark;
-  --shell:#123247; --shell-hi:#1C4A66; --shell-lo:#0A1D2B; --deep:#07141D; --seam:#2C6283;
+  --shell:#2B2C2F; --shell-hi:#3C3D41; --shell-lo:#1C1D1F; --deep:#131415; --seam:#55575C;
   --paper:#F7F5EE; --paper-ink:#141B22; --falu:#A3261B; --falu-hi:#C7392B;
-  --lamp:#FFE3A6; --gold:#E9B83A; --ok:#58D08F; --warn:#F0B44C;
-  --ink:#EAF1F5; --ink-2:#A9BFCD; --patch:rgba(6,20,30,.66); --patch-line:rgba(170,205,225,.16); --chip:rgba(255,255,255,.07);
+  --lamp:#F6C9A4; --gold:#E8743B; --ok:#58D08F; --warn:#F39A4C;
+  --ink:#F2EFEB; --ink-2:#BAB4AD; --patch:rgba(0,0,0,.34); --patch-line:rgba(235,225,215,.15); --chip:rgba(255,255,255,.06);
   --display:"DIN Condensed","Bahnschrift Condensed","Bahnschrift SemiCondensed","Roboto Condensed","Arial Narrow",Bahnschrift,system-ui,sans-serif;
   --body:"Segoe UI Variable Text","Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
   --ease:cubic-bezier(.22,1,.36,1); --nav-h:66px;
@@ -37,7 +37,7 @@ a{color:var(--lamp)}
 
 /* ---------- Jacket hero ---------- */
 .jacket{position:relative;isolation:isolate;overflow:hidden;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:124px 40px;
-  background:radial-gradient(90% 55% at 50% 26%,rgba(255,227,166,.20),rgba(255,227,166,0) 70%),radial-gradient(140% 90% at 50% 0%,var(--shell-hi),var(--shell) 45%,var(--shell-lo) 100%)}
+  background:radial-gradient(90% 55% at 50% 26%,rgba(255,214,180,.16),rgba(255,214,180,0) 70%),radial-gradient(140% 90% at 50% 0%,var(--shell-hi),var(--shell) 45%,var(--shell-lo) 100%)}
 .jacket::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.55;mix-blend-mode:overlay;
   background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23f)'/></svg>"),
   repeating-linear-gradient(0deg,rgba(255,255,255,.07) 0 1px,transparent 1px 7px),repeating-linear-gradient(90deg,rgba(255,255,255,.07) 0 1px,transparent 1px 7px)}
@@ -176,6 +176,35 @@ button.seat.free:hover{border-color:var(--lamp);color:var(--lamp)}
 .task input:checked::after{transform:translateY(-2px) rotate(45deg) scale(1)}
 .task.done b{text-decoration:line-through;color:var(--ink-2)}
 
+
+/* Cabin + weather */
+.cabin-wrap{margin:-20px 0 0;border-radius:16px;overflow:hidden;box-shadow:0 18px 40px -18px rgba(0,0,0,.7);position:relative;background:var(--chip)}
+.cabin-wrap img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;max-width:100%}
+.cabin-wrap figcaption{position:absolute;right:8px;bottom:8px;font-size:11px;font-weight:600;color:#FFF;background:rgba(0,0,0,.45);border-radius:6px;padding:2px 6px}
+.cabin{display:block;width:100%;height:auto}
+.cabin .smoke circle{fill:rgba(235,235,240,.5)}
+@media (prefers-reduced-motion:no-preference){
+  .cabin .smoke circle{animation:smoke 6s linear infinite;transform-box:fill-box;transform-origin:center}
+  .cabin .smoke circle:nth-child(2){animation-delay:-2s}.cabin .smoke circle:nth-child(3){animation-delay:-4s}
+  .cabin .glow{animation:flick 3.2s ease-in-out infinite}
+  .cabin .star{animation:tw 4s ease-in-out infinite}
+  .cabin .flakes circle{animation:fall 8s linear infinite}
+}
+@keyframes smoke{0%{transform:translate(0,0) scale(.6);opacity:.9}100%{transform:translate(26px,-48px) scale(2.4);opacity:0}}
+@keyframes flick{0%,100%{opacity:1}45%{opacity:.86}55%{opacity:.95}}
+@keyframes tw{0%,100%{opacity:.9}50%{opacity:.3}}
+@keyframes fall{from{transform:translate(0,0)}to{transform:translate(14px,212px)}}
+.wxrow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:8px}
+.wxd{display:grid;gap:2px;justify-items:start;padding:12px;border-radius:12px;background:var(--chip)}
+.wxd.empty{opacity:.55}
+.wxi{color:var(--lamp)}.wxi svg{width:30px;height:30px}
+.wxt{font-family:var(--display);font-stretch:condensed;font-weight:700;font-size:30px;line-height:1}
+.wxt small{font-size:18px;color:var(--ink-2)}
+.wax{margin-top:6px;font-size:12px;font-weight:800;border-radius:999px;padding:2px 9px;background:var(--w);color:#FFF}
+details.addplace summary{cursor:pointer;font-weight:700;min-height:28px;list-style:none}
+details.addplace summary::-webkit-details-marker{display:none}
+details.addplace summary::before{content:"+ ";color:var(--lamp)}
+details.addplace[open] summary{margin-bottom:6px}
 /* Cash */
 .big{font-family:var(--display);font-stretch:condensed;font-weight:700;font-size:56px;line-height:.9}
 .tr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:12px;border-radius:12px;background:var(--paper);color:var(--paper-ink)}
@@ -190,11 +219,11 @@ button.seat.free:hover{border-color:var(--lamp);color:var(--lamp)}
 .whoset{display:flex;flex-wrap:wrap;gap:6px}
 
 /* Bottom nav */
-nav.bar{position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(7,20,29,.96);border-top:1px solid var(--patch-line);padding:6px max(10px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(10px,env(safe-area-inset-left,0px))}
+nav.bar{position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(19,20,21,.96);border-top:1px solid var(--patch-line);padding:6px max(10px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(10px,env(safe-area-inset-left,0px))}
 nav.bar .wrap{max-width:560px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
 nav.bar a{position:relative;display:grid;justify-items:center;gap:2px;padding:6px 0;min-height:52px;border-radius:12px;text-decoration:none;font-size:12px;font-weight:700;color:var(--ink-2)}
 nav.bar a svg{width:22px;height:22px}
-nav.bar a[aria-current="page"]{color:var(--lamp);background:rgba(255,227,166,.08)}
+nav.bar a[aria-current="page"]{color:var(--lamp);background:rgba(246,201,164,.09)}
 nav.bar a .dotn{position:absolute;top:6px;left:calc(50% + 8px);min-width:18px;height:18px;border-radius:9px;background:var(--falu-hi);color:#FFF;font-size:11px;display:grid;place-items:center;padding:0 5px}
 </style>
 
@@ -225,13 +254,13 @@ nav.bar a .dotn{position:absolute;top:6px;left:calc(50% + 8px);min-width:18px;he
   <div class="badge" aria-hidden="true">
     <svg viewBox="0 0 120 78">
       <defs><clipPath id="ov"><ellipse cx="60" cy="39" rx="54" ry="33"/></clipPath></defs>
-      <ellipse cx="60" cy="39" rx="58" ry="37" fill="#E9B83A"/>
-      <ellipse cx="60" cy="39" rx="58" ry="37" fill="none" stroke="#7A5A10" stroke-width="1.4" stroke-dasharray="2.2 1.6"/>
-      <g clip-path="url(#ov)"><rect width="120" height="78" fill="#18324A"/><rect y="33" width="120" height="12" fill="#B3271C"/><rect y="31" width="120" height="2" fill="#F3EBD8"/><rect y="45" width="120" height="2" fill="#F3EBD8"/></g>
+      <ellipse cx="60" cy="39" rx="58" ry="37" fill="#EDE4D3"/>
+      <ellipse cx="60" cy="39" rx="58" ry="37" fill="none" stroke="#8C8273" stroke-width="1.4" stroke-dasharray="2.2 1.6"/>
+      <g clip-path="url(#ov)"><rect width="120" height="78" fill="#A3261B"/><rect y="33" width="120" height="12" fill="#2B2C2F"/><rect y="31" width="120" height="2" fill="#F3EBD8"/><rect y="45" width="120" height="2" fill="#F3EBD8"/></g>
       <ellipse cx="60" cy="39" rx="54" ry="33" fill="none" stroke="#F3EBD8" stroke-width="1.2" stroke-dasharray="1.8 1.4"/>
       <text x="60" y="25" text-anchor="middle" fill="#F3EBD8" font-family="Bahnschrift,'DIN Condensed','Arial Narrow',sans-serif" font-weight="700" font-size="12" letter-spacing="1.6">TOPPBYN</text>
       <text x="60" y="43" text-anchor="middle" fill="#FFF" font-family="Bahnschrift,'DIN Condensed','Arial Narrow',sans-serif" font-weight="700" font-size="10" letter-spacing="1.2">VALLATEAM</text>
-      <text x="60" y="60" text-anchor="middle" fill="#E9B83A" font-family="Bahnschrift,'DIN Condensed','Arial Narrow',sans-serif" font-weight="700" font-size="9" letter-spacing="1.4">ORSA · 2026</text>
+      <text x="60" y="60" text-anchor="middle" fill="#EDE4D3" font-family="Bahnschrift,'DIN Condensed','Arial Narrow',sans-serif" font-weight="700" font-size="9" letter-spacing="1.4">ORSA · 2026</text>
     </svg>
   </div>
   <h1 class="sr">Bäverstigen 55, längdhelg i Orsa Grönklitt 19 till 22 november 2026</h1>
@@ -240,15 +269,15 @@ nav.bar a .dotn{position:absolute;top:6px;left:calc(50% + 8px);min-width:18px;he
       <div class="bib" aria-hidden="true">
         <div class="paper">
           <svg class="creases" preserveAspectRatio="none"><rect width="100%" height="100%" filter="url(#creaseLight)"/></svg>
-          <div class="bib-top"><span>Orsa<br>Grönklitt</span><span class="num">19–22 nov<br>2026</span></div>
+          <div class="bib-top"><span>Bäverstigen<br>Toppbyn</span><span class="num">19–22 nov<br>2026</span></div>
           <div class="bib-no num">55</div>
-          <div class="bib-name" id="bibName">Bäverstigen</div>
+          <div class="bib-name" id="bibName">Ditt namn här</div>
           <div class="bib-band">
             <div><b class="num" id="bibRiders">–</b><span>Åkare</span></div>
             <div><b class="num">3</b><span>Nätter</span></div>
             <div><b class="num" id="bibDays">–</b><span>Dagar kvar</span></div>
           </div>
-          <div class="chipstrip"><span>Toppbyn</span><i class="bars"></i></div>
+          <div class="chipstrip"><span>Orsa Grönklitt</span><i class="bars"></i></div>
         </div>
       </div>
       <svg class="pin p1" aria-hidden="true"><use href="#pinShape"/></svg><svg class="pin p2" aria-hidden="true"><use href="#pinShape"/></svg>
@@ -316,8 +345,8 @@ const MEALS=[
   ["lor-frukost","lor","08.00","Frukost",""],["lor-lunch","lor","12.30","Lunch i spåret","Termos eller slogbod"],["lor-middag","lor","19.00","Middag","Helgens stora middag"],
   ["son-frukost","son","08.30","Frukost","Ut ur stugan kl 11"]];
 const DAYNAME={tor:"Torsdag 19 nov",fre:"Fredag 20 nov",lor:"Lördag 21 nov",son:"Söndag 22 nov"};
-const ITEMS=[["kaffe","Kaffe och kaffefilter"],["salt","Salt och peppar"],["olja","Olja och smör"],["krydd","Kryddor"],["disk","Diskmedel och disktrasa"],["papper","Hushållspapper och folie"],
-  ["toa","Toapapper"],["sopp","Soppåsar"],["tand","Tändare och tändpapper till bastun"],["valla","Vallajärn, kork och sickel"],["klister","Klister och fästvalla"],["spel","Kortlek och spel"],["hogt","Högtalare"]];
+const ITEMS=[["salt","Salt och peppar"],["olja","Olja och smör"],["krydd","Kryddor"],["disk","Diskmedel och disktrasa"],["papper","Hushållspapper"],
+  ["toa","Toapapper"],["sopp","Soppåsar"],["tand","Tändare och tändpapper till bastun"],["valla","Vallajärn, kork och sickel"],["klister","Klister och fästvalla"],["spel","Spel"],["hogt","Högtalare"]];
 const TASKS=[["kyl","Töm kylskåp och frys"],["disk","Diska och ställ in"],["kok","Torka av köket"],["golv","Dammsug och torka golv"],["bastu","Bastun avstängd och vädrad"],["sopor","Sopor till miljöstationen"],["koll","Gå runt och kolla att inget är kvar"],["nyckel","Nycklarna i Check-out 1 före kl 11"]];
 
 /* ---------- Data ---------- */
@@ -390,7 +419,7 @@ function render(){
   const ja=confirmed().length,ka=going().length-ja;
   $("bibRiders").textContent=!loaded?"–":(ka?ja+"–"+(ja+ka):String(ja||"–"));
   $("bibDays").textContent=Math.max(0,Math.ceil((TRIP_START-new Date())/864e5));
-  $("bibName").textContent=me&&P(me)?P(me).name:"Bäverstigen";
+  $("bibName").textContent=me&&P(me)?P(me).name:"Ditt namn här";
   $("jacket").hidden=tab!=="resan";
   document.querySelectorAll("nav.bar a").forEach(a=>{const on=a.dataset.tab===tab;if(on)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current")});
   VIEWS.forEach(v=>{const root=$("v-"+v);root.hidden=v!==tab;if(v!==tab)return;const s=snapshot(root);root.textContent="";
@@ -423,9 +452,6 @@ function nowItems(){const out=[],today=new Date(),before=today<TRIP_START,during
 
 /* ---------- RESAN ---------- */
 function viewResan(root){
-  root.append(h("section",{class:"now","aria-labelledby":"nowH"},
-    h("div",null,h("p",{class:"eyebrow",id:"nowH"},"Nu gäller")),
-    h("div",{class:"patch"},h("ul",{class:"list now"},nowItems().map(([k,t,s,fn])=>h("li",null,h("i",{class:k==="ok"?"ok":null}),h("div",null,h("b",null,t),h("small",null,s)),fn?h("button",{class:"btn ghost small",type:"button",onclick:fn},"Gå dit"):h("span")))))));
   root.append(whoSection(),peopleSection(),ridesSection(),itemsSection());
 }
 function whoSection(){
@@ -530,7 +556,7 @@ const TH='<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" 
 function viewMaten(root){
   const lines=["Meny Bäverstigen 55, 19–22 nov"];
   root.append(h("div",{class:"view-head"},h("p",{class:"eyebrow"},"Maten"),h("h2",null,"Vad blir det?"),
-    h("p",{class:"lead"},"Föreslå och rösta. Rätten med flest röster vinner, och den som är kock handlar till den. Antalet ätare räknas från vem som är på plats.")));
+    h("p",{class:"lead"},"Föreslå och rösta. Rätten med flest röster vinner. Vi handlar allt tillsammans i en stor gemensam handling, och antalet som äter räknas från vem som är på plats.")));
   ["tor","fre","lor","son"].forEach(day=>{
     const sec=h("section",{"aria-label":DAYNAME[day]},h("div",{class:"dayhead"},h("h3",{style:"font-family:var(--display);font-stretch:condensed;font-size:30px;text-transform:uppercase"},DAYNAME[day])));
     MEALS.filter(m=>m[1]===day).forEach(([slot,,time,label,note])=>{
@@ -558,31 +584,77 @@ function viewMaten(root){
 }
 
 /* ---------- PÅ PLATS ---------- */
+const GEO={lat:61.21,lon:14.54};
+const CABIN_IMG = "https://stuginfo.orsagronklitt.se/wp-content/uploads/2025/10/baver55extr01.jpg";  // bildadress till stugans foto hos Grönklitt
+let wx=ls.get("b55wx2",null),wxBusy=false;
+function fetchWx(){if(wxBusy||(wx&&Date.now()-wx.at<36e5))return;wxBusy=true;
+  const u="https://api.open-meteo.com/v1/forecast?latitude="+GEO.lat+"&longitude="+GEO.lon+"&daily=weather_code,temperature_2m_max,temperature_2m_min,snowfall_sum,precipitation_sum,wind_speed_10m_max&wind_speed_unit=ms&timezone=Europe%2FStockholm&forecast_days=16&models=metno_seamless";
+  fetch(u).then(r=>r.json()).then(j=>{if(!j.daily)throw 0;wx={at:Date.now(),d:j.daily};ls.set("b55wx2",wx)}).catch(()=>{wx=wx||{err:true,at:Date.now()}}).finally(()=>{wxBusy=false;if(tab==="plats")render()})}
+function wxKind(c){if(c===0)return["sun","Klart"];if(c<=2)return["part","Halvklart"];if(c===3)return["cloud","Mulet"];if(c===45||c===48)return["fog","Dimma"];
+  if(c>=71&&c<=77||c===85||c===86)return["snow","Snö"];if(c>=51&&c<=67||c>=80&&c<=82)return["rain","Regn"];if(c>=95)return["rain","Åska"];return["cloud","Mulet"]}
+const WXI={sun:'<circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/>',
+  part:'<path d="M8 4.5v1.5M3.5 9H5M4.8 5.8l1 1M12 8a4 4 0 0 0-6.6 3"/><path d="M7 19h10a4 4 0 0 0 0-8 5 5 0 0 0-9.6 1.5A3.3 3.3 0 0 0 7 19z"/>',
+  cloud:'<path d="M7 18h10a4 4 0 0 0 0-8 5.5 5.5 0 0 0-10.6 1.6A3.2 3.2 0 0 0 7 18z"/>',
+  fog:'<path d="M4 9h16M6 13h12M4 17h16"/>',
+  snow:'<path d="M7 14h10a4 4 0 0 0 0-8 5.5 5.5 0 0 0-10.6 1.6A3.2 3.2 0 0 0 7 14z"/><path d="M8 18v.01M12 20v.01M16 18v.01M10 22v.01M14 22v.01"/>',
+  rain:'<path d="M7 14h10a4 4 0 0 0 0-8 5.5 5.5 0 0 0-10.6 1.6A3.2 3.2 0 0 0 7 14z"/><path d="M9 17l-1 3M13 17l-1 3M17 17l-1 3"/>'};
+function waxFor(mx,mn){const t=(mx+mn)/2;return t<-10?["Grön","#2E8B57"]:t<-2?["Blå","#3A6FD0"]:t<0?["Violett","#8A63C4"]:["Klister","#D2453A"]}
+function wxCard(i,label){const d=wx.d,[k,txt]=wxKind(d.weather_code[i]),mx=d.temperature_2m_max[i],mn=d.temperature_2m_min[i],[wn,wc]=waxFor(mx,mn);
+  const deg=v=>(v>0?"+":v<0?"−":"")+Math.abs(Math.round(v))+"°";
+  return h("li",{class:"wxd"},h("b",null,label),h("span",{class:"wxi",html:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+WXI[k]+'</svg>'}),
+    h("span",{class:"wxt num"},deg(mx)," ",h("small",null,deg(mn))),h("span",{class:"note"},txt+(d.snowfall_sum[i]>=.5?", "+d.snowfall_sum[i].toFixed(0).replace(".",",")+" cm":"")),
+    d.wind_speed_10m_max[i]!=null?h("span",{class:"note num"},"Vind "+Math.round(d.wind_speed_10m_max[i])+" m/s"):null,h("span",{class:"wax",style:"--w:"+wc},wn))}
+function weatherSection(){fetchWx();
+  const sec=h("section",{"aria-labelledby":"wxH"},h("div",null,h("h3",{id:"wxH"},"Väder i Grönklitt"),h("p",{class:"note"},"Prognos från MET Norway, samma som Yr, hämtad via Open-Meteo och uppdaterad varje timme. Fästvallan är ett förslag utifrån dygnets medeltemperatur."),h("div",{class:"row",style:"margin-top:8px"},h("a",{class:"btn ghost small",href:"https://www.yr.no/sv/sok?q=Gr%C3%B6nklitt",target:"_blank",rel:"noopener"},"Öppna Yr"),h("a",{class:"btn ghost small",href:"https://www.smhi.se/vader",target:"_blank",rel:"noopener"},"Öppna SMHI"))));
+  if(!wx){sec.append(h("p",{class:"note"},"Hämtar prognosen…"));return sec}
+  if(wx.err||!wx.d){sec.append(h("p",{class:"note"},"Prognosen gick inte att hämta just nu. Använd Yr eller SMHI så länge."));return sec}
+  const iso=x=>x.toLocaleDateString("sv-SE"),trip=["2026-11-19","2026-11-20","2026-11-21","2026-11-22"],names=["Tor 19","Fre 20","Lör 21","Sön 22"];
+  const ok=i=>i>=0&&wx.d.temperature_2m_max[i]!=null&&wx.d.temperature_2m_min[i]!=null,idx=trip.map(t=>{const i=wx.d.time.indexOf(t);return ok(i)?i:-1}),have=idx.filter(i=>i>=0).length;
+  if(have){const ahead=Math.round((TRIP_START-new Date())/864e5);
+    sec.append(h("div",{class:"patch"},h("p",{class:"eyebrow"},"Vår helg"),h("ul",{class:"wxrow"},idx.map((i,k)=>i>=0?wxCard(i,names[k]):h("li",{class:"wxd empty"},h("b",null,names[k]),h("span",{class:"note"},"Inte än")))),
+      ahead>10?h("p",{class:"note"},"Mer än tio dagar kvar, så räkna med att det ändras."):null))}
+  else{const first=new Date(2026,10,19);first.setDate(first.getDate()-15);
+    sec.append(h("p",{class:"note"},"Prognosen för vår helg dyker upp här runt "+first.toLocaleDateString("sv-SE",{day:"numeric",month:"long"})+" och blir pålitlig ungefär tio dagar innan, runt 9 november."))}
+  const t0=wx.d.time.indexOf(iso(new Date()));
+  if(t0>=0&&!(have&&t0>=idx[0]))sec.append(h("div",{class:"patch"},h("p",{class:"eyebrow"},"Närmaste dagarna"),h("ul",{class:"wxrow"},[0,1,2,3].map(k=>ok(t0+k)?wxCard(t0+k,new Date(wx.d.time[t0+k]).toLocaleDateString("sv-SE",{weekday:"short",day:"numeric"})):null))));
+  return sec}
+
 function viewPlats(root){
+  root.append(h("div",{class:"view-head"},h("p",{class:"eyebrow"},"På plats"),h("h2",null,"Bäverstigen 55"),h("p",{class:"lead"},"Timmerstugan i Toppbyn, med bastu och egen vallabod.")));
+  if(CABIN_IMG){const img=h("img",{src:CABIN_IMG,alt:"Stugan Bäverstigen 55",loading:"lazy",decoding:"async"});
+    const fig=h("figure",{class:"cabin-wrap"},img,h("figcaption",null,"Foto: Orsa Grönklitt"));img.addEventListener("error",()=>fig.remove());root.append(fig)}
+  root.append(weatherSection());
   const toOpen=Math.ceil((new Date(2026,9,24,6)-new Date())/864e5);
-  root.append(h("div",{class:"view-head"},h("p",{class:"eyebrow"},"På plats"),h("h2",null,"Spåren och stugan")));
-  root.append(h("section",{"aria-labelledby":"trH"},h("h3",{id:"trH",class:"sr"},"Spårläget"),
-    h("div",{class:"patch"},h("div",{class:"row"},h("span",{class:"pill "+(toOpen>0?"warn":"ja")},toOpen>0?"Öppnar om "+toOpen+" dagar":"Spåren är öppna sedan 24 okt")),
+  root.append(h("section",{"aria-labelledby":"trH"},h("h3",{id:"trH"},"Spåren"),
+    h("div",{class:"patch"},h("div",{class:"row"},h("span",{class:"pill "+(toOpen>0?"warn":"ja")},toOpen>0?"Öppnar om "+toOpen+" dagar":"Öppna 06–21 varje dag")),
       h("div",{class:"row",style:"align-items:flex-end"},h("div",{class:"km num","aria-label":"1,3 kilometer"},"1,3",h("sup",null,"km")),
-        h("p",{class:"note grow",style:"min-width:180px"},"Spår på sparad snö från 24 oktober, målet var 6 km under vecka 44. Resten av de 145 km öppnar när natursnön räcker.")),
+        h("p",{class:"note grow",style:"min-width:180px"},"Spår på sparad snö sedan 24 oktober. Resten av de 145 km öppnar när natursnön räcker.")),
       h("a",{class:"btn ghost",href:"https://www.orsagronklitt.se/skidaakning/laengdskidaakning/spaarinformation-och-vallatips",target:"_blank",rel:"noopener"},"Dagens spårstatus hos Grönklitt")),
     h("div",{class:"patch chart"},h("h3",null,"Fästvalla efter temperatur"),h("div",{html:waxChart()}),h("p",{class:"note"},"Det ljusa fältet är det normala spannet i slutet av november, ungefär −10 till +2 °C."))));
-  // restaurants
-  const places=Object.entries(S.places).sort((a,b)=>b[1].at-a[1].at);
-  const pf=h("form",{class:"form"},h("input",{type:"text",id:"plName",maxlength:"50",placeholder:"Ställe, t.ex. pizzerian i Orsa","aria-label":"Restaurang"}),
-    h("input",{type:"text",id:"plNote",maxlength:"80",placeholder:"Öppettider eller kommentar","aria-label":"Öppettider eller kommentar"}),
-    h("div",{class:"row"},h("button",{class:"btn",type:"submit",value:"open",disabled:!me},"Öppet"),h("button",{class:"btn ghost",type:"submit",value:"closed",disabled:!me},"Stängt")));
-  pf.addEventListener("submit",e=>{e.preventDefault();const n=$("plName").value.trim();if(!n)return;const open=!(e.submitter&&e.submitter.value==="closed");
-    put("places",uid("r"),{name:n,note:$("plNote").value.trim(),open,by:me,at:Date.now()});$("plName").value="";$("plNote").value=""});
-  root.append(h("section",{"aria-labelledby":"rsH"},h("div",null,h("h3",{id:"rsH"},"Restauranger"),
-      h("p",{class:"note"},"I november är det mesta i backen stängt. Ring och kolla innan, och lägg in vad du fick veta.")),
-    places.length?h("ul",{class:"list"},places.map(([id,x])=>h("li",{class:"exp"},h("b",null,x.name),h("span",{class:"pill "+(x.open?"ja":"nej")},x.open?"Öppet":"Stängt"),
-      h("small",null,[x.note,"kollat av "+name(x.by)+" "+new Date(x.at).toLocaleDateString("sv-SE",{day:"numeric",month:"short"})].filter(Boolean).join(" · "))))):
-      h("p",{class:"note"},"Ingen har kollat än."),
-    h("div",{class:"patch"},pf)));
+  // restaurants and activities
+  const KIND={mat:"Mat och fika",akt:"Aktiviteter"};
+  const places=Object.entries(S.places);
+  if(!draft.kind)draft.kind="mat";
+  const pf=h("form",{class:"form"},
+    h("div",{class:"seg",role:"group","aria-label":"Typ"},Object.entries(KIND).map(([v,l])=>h("button",{type:"button","aria-pressed":String(draft.kind===v),onclick:()=>{draft.kind=v;render()}},l))),
+    h("input",{type:"text",id:"plName",maxlength:"50",placeholder:draft.kind==="mat"?"Namn, t.ex. Wärdshuset":"Namn, t.ex. gymmet","aria-label":"Namn"}),
+    h("input",{type:"text",id:"plNote",maxlength:"90",placeholder:"Öppettider under vår helg","aria-label":"Öppettider under vår helg"}),
+    h("input",{type:"text",id:"plLink",maxlength:"200",inputmode:"url",placeholder:"Länk (frivillig)","aria-label":"Länk, frivillig"}),
+    h("button",{class:"btn",type:"submit",disabled:!me},"Lägg till"));
+  pf.addEventListener("submit",e=>{e.preventDefault();const n=$("plName").value.trim();if(!n)return;let link=$("plLink").value.trim();if(link&&!/^https?:\/\//i.test(link))link="https://"+link;
+    put("places",uid("r"),{name:n,note:$("plNote").value.trim(),link,kind:draft.kind,by:me,at:Date.now()});["plName","plNote","plLink"].forEach(id=>$(id).value="")});
+  const sec=h("section",{"aria-labelledby":"rsH"},h("div",null,h("h3",{id:"rsH"},"Restauranger och aktiviteter"),h("p",{class:"note"},"Det som är öppet under vår helg. ",
+    h("a",{href:"https://www.orsagronklitt.se/en/on-location/openhours/",target:"_blank",rel:"noopener"},"Grönklitts öppettider"),".")));
+  Object.entries(KIND).forEach(([k,l])=>{const list=places.filter(([,x])=>(x.kind||"mat")===k).sort((a,b)=>a[1].name.localeCompare(b[1].name,"sv"));if(!list.length)return;
+    sec.append(h("p",{class:"eyebrow"},l),h("ul",{class:"list"},list.map(([id,x])=>h("li",{class:"exp"},x.link?h("a",{href:x.link,target:"_blank",rel:"noopener",style:"font-weight:700;color:var(--ink)"},x.name):h("b",null,x.name),
+      x.by===me?confirmBtn("Ta bort","Tryck igen",()=>drop("places",id)):h("span"),
+      x.note?h("small",null,x.note):null))))});
+  if(!places.length)sec.append(h("p",{class:"note"},"Inget inlagt än."));
+  sec.append(h("details",{class:"patch addplace"},h("summary",null,"Lägg till ställe eller aktivitet"),pf));
+  root.append(sec);
   root.append(h("section",{"aria-labelledby":"stH"},h("h3",{id:"stH"},"Stugan"),
     h("div",{class:"facts"},[["Bastu","Finns i stugan"],["Vallabod","För skidorna"],["Torkskåp","Plus pjäxtork"],["Kök","Diskmaskin, kaffebryggare"],["Elbil","Laddning och motorvärmare"],["Wifi","Koden står i pärmen"]].map(([b,s])=>h("div",{class:"fact"},h("b",null,b),h("span",null,s)))),
-    h("a",{class:"btn ghost",href:"https://stuginfo.orsagronklitt.se/baverstigen-55/",target:"_blank",rel:"noopener"},"Stuginfo hos Grönklitt")));
+    h("a",{class:"btn ghost",href:"https://stuginfo.orsagronklitt.se/baverstigen-55/",target:"_blank",rel:"noopener"},"Bilder och stuginfo hos Grönklitt")));
   root.append(h("section",{class:"jour","aria-labelledby":"jH"},h("p",{id:"jH"},"Jourtelefon vid akuta fel på el eller värme"),
     h("a",{class:"tel num",href:"tel:+46703449311"},"070-344 93 11"),h("button",{class:"btn",type:"button",onclick:()=>copy("070-344 93 11","Numret är kopierat")},"Kopiera numret")));
   // departure
@@ -599,8 +671,8 @@ function viewPlats(root){
 function waxChart(){const W=340,L=62,R=14,T=8,min=-20,max=3,x=v=>L+(v-min)/(max-min)*(W-L-R);
   const rows=[["Grön","#2E8B57",-20,-10],["Blå","#3A6FD0",-10,-2],["Violett","#8A63C4",-3,0],["Klister","#D2453A",-1,3]];
   let s='<svg viewBox="0 0 '+W+' 176" role="img" aria-label="Fästvalla: grön −20 till −10 grader, blå −10 till −2, violett −3 till 0, klister −1 till plus 3.">';
-  s+='<rect x="'+x(-10)+'" y="'+T+'" width="'+(x(2)-x(-10))+'" height="'+(rows.length*34)+'" fill="rgba(255,227,166,.10)" rx="4"/>';
-  [-20,-15,-10,-5,0].forEach(v=>{s+='<line x1="'+x(v)+'" x2="'+x(v)+'" y1="'+T+'" y2="'+(T+rows.length*34)+'" stroke="rgba(170,205,225,.16)"/>'});
+  s+='<rect x="'+x(-10)+'" y="'+T+'" width="'+(x(2)-x(-10))+'" height="'+(rows.length*34)+'" fill="rgba(246,201,164,.10)" rx="4"/>';
+  [-20,-15,-10,-5,0].forEach(v=>{s+='<line x1="'+x(v)+'" x2="'+x(v)+'" y1="'+T+'" y2="'+(T+rows.length*34)+'" stroke="rgba(235,225,215,.15)"/>'});
   rows.forEach(([n,c,a,b],i)=>{const y=T+i*34+7;s+='<text class="lbl" x="0" y="'+(y+15)+'">'+n+'</text><rect x="'+x(a)+'" y="'+y+'" width="'+(x(b)-x(a))+'" height="20" rx="5" fill="'+c+'"/>'});
   const ay=T+rows.length*34+18;[-20,-15,-10,-5,0,3].forEach(v=>{s+='<text x="'+x(v)+'" y="'+ay+'" text-anchor="middle">'+(v>0?"+":v<0?"−":"")+Math.abs(v)+'°</text>'});
   return s+"</svg>"}
