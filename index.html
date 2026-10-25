@@ -375,10 +375,10 @@ const TRIP_START=new Date(2026,10,19), TRIP_END=new Date(2026,10,22,12);
 const ARRIVE={tor:{w:"Torsdag",s:"Tor",n:3,first:0},fre:{w:"Fredag",s:"Fre",n:2,first:3},lor:{w:"Lördag",s:"Lör",n:1,first:6}};
 const STATUS={ja:"Med",kanske:"Kanske",nej:"Inte med"};
 const MEALS=[
-  ["tor-middag","tor","19.00","Middag","Ankomstkväll"],
-  ["fre-frukost","fre","08.00","Frukost",""],["fre-lunch","fre","12.30","Lunch i spåret","Termos eller slogbod"],["fre-middag","fre","19.00","Middag","Efter bastun"],
-  ["lor-frukost","lor","08.00","Frukost",""],["lor-lunch","lor","12.30","Lunch i spåret","Termos eller slogbod"],["lor-middag","lor","19.00","Middag","Helgens stora middag"],
-  ["son-frukost","son","08.30","Frukost","Ut ur stugan kl 11"]];
+  ["tor-middag","tor","19.00","Middag",""],
+  ["fre-frukost","fre","08.00","Frukost",""],["fre-lunch","fre","12.30","Lunch",""],["fre-middag","fre","19.00","Middag",""],
+  ["lor-frukost","lor","08.00","Frukost",""],["lor-lunch","lor","12.30","Lunch",""],["lor-middag","lor","19.00","Middag",""],
+  ["son-frukost","son","08.30","Frukost",""]];
 const DAYNAME={tor:"Torsdag 19 nov",fre:"Fredag 20 nov",lor:"Lördag 21 nov",son:"Söndag 22 nov"};
 const ITEMS=[["salt","Salt och peppar"],["olja","Olja och smör"],["krydd","Kryddor"],["disk","Diskmedel och disktrasa"],["papper","Hushållspapper"],
   ["toa","Toapapper"],["sopp","Soppåsar"],["tand","Tändare och tändpapper till bastun"],["valla","Vallajärn, kork och sickel"],["klister","Klister och fästvalla"],["spel","Spel"],["hogt","Högtalare"]];
@@ -609,8 +609,7 @@ function breakfastSection(lines){
   const cook=S.cooks.frukost,n=eaters("son-frukost").length;
   lines.push("Frukost fre–sön: "+(list.length?list.map(([,p])=>p.dish).join(", "):"–")+(cook?" (ansvarig "+name(cook.by)+")":""));
   const card=h("div",{class:"meal",id:"m-frukost"},
-    h("div",{class:"meal-top"},h("span",{class:"t num"},"08.00"),h("h3",null,"Frukost"),h("span",{class:"pill num"},n+" äter")),
-    h("p",{class:"note"},"Samma varje morgon, fredag till söndag. Söndag kl 8.30, ut ur stugan kl 11. Lägg till det som ska finnas på bordet."));
+    h("div",{class:"meal-top"},h("span",{class:"t num"},"08.00"),h("h3",null,"Frukost"),h("span",{class:"pill num"},n+" äter")));
   if(list.length)card.append(h("ul",{class:"list"},list.map(([id,p])=>h("li",{class:"item"},
     h("div",null,h("b",null,p.dish),h("small",null,"Från "+name(p.by))),
     p.by===me?confirmBtn("Ta bort","Tryck igen",()=>drop("proposals",id)):h("span")))));
