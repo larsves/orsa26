@@ -5,6 +5,20 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}</style>
 <title>Bäverstigen 55</title>
+<meta name="description" content="Längdhelg i Orsa Grönklitt 19–22 november. Svara om du är med, ta en bilplats och rösta om maten.">
+<!-- Link previews in Messenger, Facebook, iMessage, Slack m.fl. -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="sv_SE">
+<meta property="og:site_name" content="Bäverstigen 55">
+<meta property="og:url" content="https://larsves.github.io/orsa26/">
+<meta property="og:title" content="Bäverstigen 55 – längdhelg i Grönklitt">
+<meta property="og:description" content="19–22 november. Svara om du är med, ta en bilplats och rösta om maten.">
+<meta property="og:image" content="https://larsves.github.io/orsa26/og.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Nummerlapp 55 för längdhelgen i Bäverstigen, Orsa Grönklitt 19–22 november">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
 
@@ -13,13 +27,16 @@
 <style>
 /* Layout: the page is the chest of a ski shell at dusk. A crumpled bib is pinned over the zipper;
    everything else is stitched-on patches. Four tabs: Resan, Maten, På plats, Kassan. */
+/* Fallback for Android/Linux, which have none of the condensed system faces.
+   Only downloaded when DIN Condensed / Bahnschrift are missing. */
+@font-face{font-family:"Barlow Condensed";font-weight:700;font-style:normal;font-display:swap;src:url("barlow-condensed-700.woff") format("woff")}
 :root{
   color-scheme:dark;
   --shell:#2B2C2F; --shell-hi:#3C3D41; --shell-lo:#1C1D1F; --deep:#131415; --seam:#55575C;
   --paper:#F7F5EE; --paper-ink:#141B22; --falu:#A3261B; --falu-hi:#C7392B;
   --lamp:#F6C9A4; --gold:#E8743B; --ok:#58D08F; --warn:#F39A4C;
   --ink:#F2EFEB; --ink-2:#BAB4AD; --patch:rgba(0,0,0,.34); --patch-line:rgba(235,225,215,.15); --chip:rgba(255,255,255,.06);
-  --display:"DIN Condensed","Bahnschrift Condensed","Bahnschrift SemiCondensed","Roboto Condensed","Arial Narrow",Bahnschrift,system-ui,sans-serif;
+  --display:"DIN Condensed","Bahnschrift Condensed","Bahnschrift SemiCondensed","Barlow Condensed","Roboto Condensed","Arial Narrow",Bahnschrift,system-ui,sans-serif;
   --body:"Segoe UI Variable Text","Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
   --ease:cubic-bezier(.22,1,.36,1); --nav-h:66px;
 }
@@ -36,7 +53,7 @@ button,input,select{font:inherit;color:inherit}
 a{color:var(--lamp)}
 
 /* ---------- Jacket hero ---------- */
-.jacket{position:relative;isolation:isolate;overflow:hidden;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:124px 40px;
+.jacket{position:relative;isolation:isolate;overflow:hidden;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:104px 28px;
   background:radial-gradient(90% 55% at 50% 26%,rgba(255,214,180,.16),rgba(255,214,180,0) 70%),radial-gradient(140% 90% at 50% 0%,var(--shell-hi),var(--shell) 45%,var(--shell-lo) 100%)}
 .jacket::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.55;mix-blend-mode:overlay;
   background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23f)'/></svg>"),
@@ -61,7 +78,17 @@ a{color:var(--lamp)}
 .creases{position:absolute;inset:0;z-index:2;pointer-events:none;mix-blend-mode:multiply;width:100%;height:100%}
 .bib-top{position:relative;z-index:1;display:flex;justify-content:space-between;gap:12px;padding:0 18px;font-family:var(--display);font-stretch:condensed;font-weight:700;font-size:15px;letter-spacing:.12em;text-transform:uppercase;line-height:1.15}
 .bib-top span:last-child{color:var(--falu);text-align:right}
-.bib-no{position:relative;z-index:1;font-family:var(--display);font-stretch:condensed;font-weight:700;font-size:clamp(150px,46vw,230px);line-height:.76;letter-spacing:-.03em;text-align:center;margin:18px 0 6px}
+.bib-no{position:relative;z-index:1;font-family:var(--display);font-stretch:condensed;font-weight:700;font-size:clamp(130px,40vw,210px);line-height:.76;letter-spacing:-.03em;text-align:center;margin:16px 0 6px}
+/* Once you have picked who you are, the bib shrinks so the to-do list is on the first screen */
+.jacket.compact{padding-block:72px 20px}
+.jacket.compact .badge{width:88px;top:14px}
+.jacket.compact .paper{padding-top:18px}
+.jacket.compact .bib-no{font-size:clamp(84px,26vw,128px);margin:10px 0 4px}
+.jacket.compact .bib-name{font-size:22px}
+.jacket.compact .bib-band{margin-top:10px;padding-block:9px 8px}
+.jacket.compact .bib-band b{font-size:24px}
+.jacket.compact .chipstrip{padding-block:8px 10px}
+.jacket.compact .bars{height:16px}
 .bib-name{position:relative;z-index:1;font-family:var(--display);font-stretch:condensed;font-weight:700;font-size:28px;text-align:center;letter-spacing:.08em;text-transform:uppercase;overflow-wrap:anywhere;padding:0 8px}
 .bib-band{position:relative;z-index:1;margin:14px -22px 0;background:var(--falu);color:#FFF;display:grid;grid-template-columns:repeat(3,1fr);text-align:center;padding:12px 6px 10px}
 .bib-band b{display:block;font-family:var(--display);font-stretch:condensed;font-size:28px;line-height:1}
@@ -79,7 +106,8 @@ main{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px
 .view-head{padding-top:28px}
 section{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;min-width:0}
 .eyebrow{font-family:var(--display);font-stretch:condensed;font-weight:700;font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--lamp)}
-h2{font-family:var(--display);font-stretch:condensed;font-weight:700;font-size:44px;line-height:.92;text-wrap:balance;margin-top:4px}
+h2{font-family:var(--display);font-stretch:condensed;font-weight:700;font-size:44px;line-height:.92;text-wrap:pretty;margin-top:4px}
+h2+.lead,h2+.note{margin-top:12px}
 h3{font-size:18px;line-height:1.3}
 .lead{color:var(--ink-2);max-width:60ch}
 .note{font-size:14px;color:var(--ink-2)}
@@ -111,12 +139,17 @@ label.f{display:grid;gap:6px;font-size:14px;font-weight:600;color:var(--ink-2)}
 .demo{background:rgba(240,180,76,.14);border:1px solid rgba(240,180,76,.4);color:#F6CF86;border-radius:12px;padding:10px 14px;font-size:14px}
 
 /* Now */
-.now{margin-top:-8px}
-.now li{display:grid;grid-template-columns:10px 1fr auto;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--patch-line)}
-.now li:first-child{border-top:0;padding-top:0}
-.now li i{width:10px;height:10px;border-radius:50%;background:var(--warn)}
-.now li i.ok{background:var(--ok)}
-.now b{display:block}.now small{display:block;color:var(--ink-2);font-size:14px}
+.now{list-style:none;margin:0;padding:0}
+.now li{border-top:1px solid var(--patch-line)}
+.now li:first-child{border-top:0}
+.now .nowrow{display:grid;grid-template-columns:10px minmax(0,1fr) auto;gap:12px;align-items:center;width:100%;min-height:52px;padding:10px 2px;border:0;background:none;text-align:left;color:inherit;cursor:pointer}
+.now li:first-child .nowrow{padding-top:2px}
+div.nowrow{cursor:default}
+.now i{width:10px;height:10px;border-radius:50%;background:var(--warn)}
+.now i.ok{background:var(--ok)}
+.now b{display:block}.now small{display:block;color:var(--ink-2);font-size:14px;overflow-wrap:anywhere}
+.now svg{width:18px;height:18px;color:var(--ink-2)}
+button.nowrow:hover svg{color:var(--lamp)}
 
 /* People */
 .person{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;align-items:center;padding:12px;border-radius:12px;background:var(--chip)}
@@ -216,6 +249,8 @@ details.addplace[open] summary{margin-bottom:6px}
 .pos{color:#9BE6BC}.neg{color:#FF9A8C}
 .exp{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;padding:10px 12px;border-radius:12px;background:var(--chip)}
 .exp b{overflow-wrap:anywhere}.exp small{grid-column:1/-1;color:var(--ink-2);font-size:13px}
+.exp.editing{box-shadow:inset 0 0 0 2px var(--lamp)}
+.exp .acts{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:4px 12px}
 .whoset{display:flex;flex-wrap:wrap;gap:6px}
 
 /* Bottom nav */
@@ -231,7 +266,7 @@ nav.bar a .dotn{position:absolute;top:6px;left:calc(50% + 8px);min-width:18px;he
   <defs>
     <filter id="crumple" x="-6%" y="-6%" width="112%" height="112%">
       <feTurbulence type="fractalNoise" baseFrequency=".010 .016" numOctaves="2" seed="11" result="n"/>
-      <feDisplacementMap in="SourceGraphic" in2="n" scale="14" xChannelSelector="R" yChannelSelector="G"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="6"xChannelSelector="R" yChannelSelector="G"/>
     </filter>
     <filter id="creaseLight" x="0" y="0" width="100%" height="100%">
       <feTurbulence type="turbulence" baseFrequency=".0055 .0085" numOctaves="2" seed="4"/>
@@ -352,7 +387,7 @@ const TASKS=[["kyl","Töm kylskåp och frys"],["disk","Diska och ställ in"],["k
 /* ---------- Data ---------- */
 const COLLS=["people","items","proposals","votes","cooks","tasks","expenses","places"];
 const S={};COLLS.forEach(c=>S[c]={});
-let me=ls.get("b55me",null), pending=0, loaded=false;
+let me=ls.get("b55me",null), pending=0, loaded=false, lastSig="";
 function seed(){const d={};COLLS.forEach(c=>d[c]={});
   d.people={a:{name:"Lars",status:"ja",arrive:"tor",car:true,seats:3,from:"Västerås",depart:"15.30"},b:{name:"Rasmus",status:"ja",arrive:"tor",car:false,ride:"a"},
     c:{name:"Kompis 3",status:"ja",arrive:"fre",car:true,seats:2,from:"Stockholm",depart:"07.00"},d:{name:"Kompis 4",status:"ja",arrive:"fre",car:false},e:{name:"Kompis 5",status:"kanske",arrive:"fre",car:false}};
@@ -366,14 +401,17 @@ async function load(){
   if(DEMO){let d=ls.get("b55demo",null);if(!d){d=seed();ls.set("b55demo",d)}if(!me||!d.people[me])me=null;apply(d);return}
   if(pending)return;
   const r=await fetch(API+"?code="+encodeURIComponent(CODE),{cache:"no-store"});const j=await r.json();
-  if(j.error)throw new Error(j.error);const d={};(j.rows||[]).forEach(x=>{(d[x.c]=d[x.c]||{})[x.i]=x.d});
-  if(pending)return;apply(d)}
+  if(j.error)throw new Error(j.error);
+  // Skip the re-render when nothing changed, so open forms and half-typed text are left alone
+  const sig=JSON.stringify(j.rows||[]);if(loaded&&sig===lastSig)return;
+  const d={};(j.rows||[]).forEach(x=>{(d[x.c]=d[x.c]||{})[x.i]=x.d});
+  if(pending)return;lastSig=sig;apply(d)}
 async function put(c,i,data){S[c][i]=data;render();await write({op:"set",c,i,d:data})}
 async function drop(c,i){delete S[c][i];render();await write({op:"del",c,i})}
 async function write(b){if(DEMO){ls.set("b55demo",S);return}
   pending++;try{const r=await fetch(API,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(Object.assign({code:CODE},b))});
     const j=await r.json();if(j.error)throw new Error(j.error)}
-  catch(e){toast("Det gick inte att spara. Kontrollera uppkopplingen och försök igen.")}
+  catch(e){lastSig="";toast("Det gick inte att spara. Kontrollera uppkopplingen och försök igen.")}
   finally{pending--;if(!pending)load().catch(()=>{})}}
 
 /* ---------- Derived ---------- */
@@ -408,9 +446,11 @@ function go(t,anchor){tab=VIEWS.includes(t)?t:"resan";try{history.replaceState(n
 addEventListener("hashchange",()=>{const t=location.hash.slice(1);if(VIEWS.includes(t)&&t!==tab)go(t)});
 
 /* ---------- Render ---------- */
-function snapshot(root){const s={v:{},f:null,sel:null};root.querySelectorAll("input,select").forEach(i=>{if(i.id&&i.type!=="checkbox")s.v[i.id]=i.value});
+function snapshot(root){const s={v:{},f:null,sel:null,open:[]};root.querySelectorAll("input,select").forEach(i=>{if(i.id&&i.type!=="checkbox")s.v[i.id]=i.value});
+  root.querySelectorAll("details[id]").forEach(d=>{if(d.open)s.open.push(d.id)});
   const a=document.activeElement;if(a&&a.id&&root.contains(a)){s.f=a.id;try{s.sel=[a.selectionStart,a.selectionEnd]}catch(e){}}return s}
-function restore(root,s){for(const id in s.v){const i=root.querySelector("#"+CSS.escape(id));if(i&&!i.dataset.fresh)i.value=s.v[id]}
+function restore(root,s){s.open.forEach(id=>{const d=root.querySelector("#"+CSS.escape(id));if(d)d.open=true});
+  for(const id in s.v){const i=root.querySelector("#"+CSS.escape(id));if(i&&!i.dataset.fresh)i.value=s.v[id]}
   if(s.f){const f=$(s.f);if(f){f.focus({preventScroll:true});if(s.sel&&f.setSelectionRange)try{f.setSelectionRange(s.sel[0],s.sel[1])}catch(e){}}}}
 
 function render(){
@@ -421,6 +461,7 @@ function render(){
   $("bibDays").textContent=Math.max(0,Math.ceil((TRIP_START-new Date())/864e5));
   $("bibName").textContent=me&&P(me)?P(me).name:"Ditt namn här";
   $("jacket").hidden=tab!=="resan";
+  $("jacket").classList.toggle("compact",!!(me&&P(me)));
   document.querySelectorAll("nav.bar a").forEach(a=>{const on=a.dataset.tab===tab;if(on)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current")});
   VIEWS.forEach(v=>{const root=$("v-"+v);root.hidden=v!==tab;if(v!==tab)return;const s=snapshot(root);root.textContent="";
     ({resan:viewResan,maten:viewMaten,plats:viewPlats,kassan:viewKassan})[v](root);restore(root,s)});
@@ -451,7 +492,14 @@ function nowItems(){const out=[],today=new Date(),before=today<TRIP_START,during
   return out.slice(0,4)}
 
 /* ---------- RESAN ---------- */
+const CHEV='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>';
+function nowSection(){
+  const rows=nowItems().map(([kind,title,sub,fn])=>{
+    const inner=[h("i",{class:kind==="ok"?"ok":null,"aria-hidden":"true"}),h("div",null,h("b",null,title),sub?h("small",null,sub):null)];
+    return h("li",null,fn?h("button",{class:"nowrow",type:"button",onclick:fn},inner,h("span",{html:CHEV})):h("div",{class:"nowrow"},inner))});
+  return h("section",{id:"now","aria-labelledby":"nowH"},h("h2",{class:"eyebrow",id:"nowH"},"Nu gäller"),h("div",{class:"patch"},h("ul",{class:"now"},rows)))}
 function viewResan(root){
+  if(loaded)root.append(nowSection());
   root.append(whoSection(),peopleSection(),ridesSection(),itemsSection());
 }
 function whoSection(){
@@ -541,7 +589,7 @@ function itemsSection(){
     return h("li",{class:"item"+(x.by?"":" open")},
       h("div",null,h("b",null,x.name),h("small",null,x.by?(mine?"Du tar med":name(x.by)+" tar med"):"Ingen än")),
       h("div",{class:"row"},
-        me&&!x.by?h("button",{class:"btn small",type:"button",onclick:()=>put("items",x.id,Object.assign({},S.items[x.id]||{},x.custom?{name:x.name,custom:true}:{},{by:me}))},"Jag tar det"):null,
+        me&&!x.by?h("button",{class:"btn ghost small",type:"button",onclick:()=>put("items",x.id,Object.assign({},S.items[x.id]||{},x.custom?{name:x.name,custom:true}:{},{by:me}))},"Jag tar det"):null,
         mine?h("button",{class:"btn ghost small",type:"button",onclick:()=>{const o=Object.assign({},S.items[x.id]);o.by=null;if(x.custom||o.name)put("items",x.id,o);else drop("items",x.id)}},"Släpp"):null,
         x.custom&&me&&(!x.by||mine)?confirmBtn("Ta bort","Tryck igen",()=>drop("items",x.id)):null))}));
   const f=h("form",{class:"add"},h("input",{type:"text",id:"newItem",maxlength:"60",placeholder:"Lägg till något mer","aria-label":"Lägg till något att ta med"}),h("button",{class:"btn",type:"submit",disabled:!me},"Lägg till"));
@@ -624,12 +672,14 @@ function viewPlats(root){
   if(CABIN_IMG){const img=h("img",{src:CABIN_IMG,alt:"Stugan Bäverstigen 55",loading:"lazy",decoding:"async"});
     const fig=h("figure",{class:"cabin-wrap"},img,h("figcaption",null,"Foto: Orsa Grönklitt"));img.addEventListener("error",()=>fig.remove());root.append(fig)}
   root.append(weatherSection());
-  const toOpen=Math.ceil((new Date(2026,9,24,6)-new Date())/864e5);
+  // Hand-entered snapshot. Update SNOW_ASOF and the text when Grönklitt opens more trails.
+  const SNOW_ASOF="24 oktober";
   root.append(h("section",{"aria-labelledby":"trH"},h("h3",{id:"trH"},"Spåren"),
-    h("div",{class:"patch"},h("div",{class:"row"},h("span",{class:"pill "+(toOpen>0?"warn":"ja")},toOpen>0?"Öppnar om "+toOpen+" dagar":"Öppna 06–21 varje dag")),
+    h("div",{class:"patch"},
+      h("a",{class:"btn",href:"https://www.orsagronklitt.se/skidaakning/laengdskidaakning/spaarinformation-och-vallatips",target:"_blank",rel:"noopener"},"Se dagens spårstatus hos Grönklitt"),
+      h("div",{class:"row"},h("span",{class:"pill"},"Senast kollat "+SNOW_ASOF)),
       h("div",{class:"row",style:"align-items:flex-end"},h("div",{class:"km num","aria-label":"1,3 kilometer"},"1,3",h("sup",null,"km")),
-        h("p",{class:"note grow",style:"min-width:180px"},"Spår på sparad snö sedan 24 oktober. Resten av de 145 km öppnar när natursnön räcker.")),
-      h("a",{class:"btn ghost",href:"https://www.orsagronklitt.se/skidaakning/laengdskidaakning/spaarinformation-och-vallatips",target:"_blank",rel:"noopener"},"Dagens spårstatus hos Grönklitt")),
+        h("p",{class:"note grow",style:"min-width:180px"},"Så mycket spår på sparad snö var öppet "+SNOW_ASOF+". Resten av de 145 km öppnar när natursnön räcker, så kolla läget innan vi åker."))),
     h("div",{class:"patch chart"},h("h3",null,"Fästvalla efter temperatur"),h("div",{html:waxChart()}),h("p",{class:"note"},"Det ljusa fältet är det normala spannet i slutet av november, ungefär −10 till +2 °C."))));
   // restaurants and activities
   const KIND={mat:"Mat och fika",akt:"Aktiviteter"};
@@ -650,7 +700,7 @@ function viewPlats(root){
       x.by===me?confirmBtn("Ta bort","Tryck igen",()=>drop("places",id)):h("span"),
       x.note?h("small",null,x.note):null))))});
   if(!places.length)sec.append(h("p",{class:"note"},"Inget inlagt än."));
-  sec.append(h("details",{class:"patch addplace"},h("summary",null,"Lägg till ställe eller aktivitet"),pf));
+  sec.append(h("details",{class:"patch addplace",id:"addPlace"},h("summary",null,"Lägg till ställe eller aktivitet"),pf));
   root.append(sec);
   root.append(h("section",{"aria-labelledby":"stH"},h("h3",{id:"stH"},"Stugan"),
     h("div",{class:"facts"},[["Bastu","Finns i stugan"],["Vallabod","För skidorna"],["Torkskåp","Plus pjäxtork"],["Kök","Diskmaskin, kaffebryggare"],["Elbil","Laddning och motorvärmare"],["Wifi","Koden står i pärmen"]].map(([b,s])=>h("div",{class:"fact"},h("b",null,b),h("span",null,s)))),
@@ -686,26 +736,35 @@ function viewKassan(root){
     t.length?h("ul",{class:"list"},t.map(([a,b,m])=>h("li",{class:"tr"+(a===me||b===me?" mine":"")},h("b",null,name(a)+" swishar "+name(b)),h("span",{class:"num"},kr(m))))):
       h("p",{class:"note"},total?"Alla är kvitt.":"Inga utlägg än."),
     t.length?h("button",{class:"btn ghost",type:"button",onclick:()=>copy(["Gör upp Bäverstigen 55:"].concat(t.map(([a,b,m])=>name(a)+" swishar "+name(b)+" "+kr(m))).join("\n"),"Listan är kopierad")},"Kopiera till gruppchatten"):null));
-  // add expense
-  const sec=h("section",{"aria-labelledby":"addH"},h("h3",{id:"addH"},"Nytt utlägg"));
+  // add or edit expense
+  const editId=ex.editId&&S.expenses[ex.editId]?ex.editId:null;
+  if(ex.editId&&!editId)ex={fresh:true};  // the expense was removed while being edited
+  const sec=h("section",{id:"exForm","aria-labelledby":"addH"},h("h3",{id:"addH"},editId?"Ändra utlägg":"Nytt utlägg"));
   if(!me)sec.append(h("p",{class:"note"},"Välj vem du är under Resan för att logga utlägg."));
   else{
     const draft=ex;if(!draft.split)draft.split=inTrip.slice();if(!draft.payer||!P(draft.payer))draft.payer=me;if(!draft.mode)draft.mode="lika";
+    const fresh=draft.fresh?"1":null;draft.fresh=false;  // prefill the text fields once when editing starts
+    // Everyone who is coming, plus whoever is already on this expense even if they have since said no
+    const pick=id=>P(id).status!=="nej"||id===draft.payer||draft.split.includes(id);
     const f=h("form",{class:"form patch"},
-      h("div",{class:"two"},h("label",{class:"f"},"Vad",h("input",{type:"text",id:"exWhat",maxlength:"50",placeholder:"t.ex. Maten ICA"})),
-        h("label",{class:"f"},"Belopp i kr",h("input",{type:"text",id:"exAmt",inputmode:"decimal",placeholder:"0"}))),
-      h("label",{class:"f"},"Betalt av",h("select",{id:"exPayer",onchange:e=>draft.payer=e.target.value},Object.entries(S.people).map(([id,p])=>{const o=h("option",{value:id},p.name);if(id===draft.payer)o.selected=true;return o}))),
-      h("div",{class:"f"},h("span",null,"Delas av"),h("div",{class:"whoset"},Object.entries(S.people).filter(([,p])=>p.status!=="nej").map(([id,p])=>h("button",{type:"button",class:"btn small "+(draft.split.includes(id)?"":"ghost"),"aria-pressed":String(draft.split.includes(id)),
+      h("div",{class:"two"},h("label",{class:"f"},"Vad",h("input",{type:"text",id:"exWhat",maxlength:"50",placeholder:"t.ex. Maten ICA",value:fresh&&draft.what!=null?draft.what:null,"data-fresh":fresh})),
+        h("label",{class:"f"},"Belopp i kr",h("input",{type:"text",id:"exAmt",inputmode:"decimal",placeholder:"0",value:fresh&&draft.amount!=null?String(draft.amount).replace(".",","):null,"data-fresh":fresh}))),
+      h("label",{class:"f"},"Betalt av",h("select",{id:"exPayer",onchange:e=>draft.payer=e.target.value},Object.entries(S.people).filter(([id])=>pick(id)).map(([id,p])=>{const o=h("option",{value:id},p.name);if(id===draft.payer)o.selected=true;return o}))),
+      h("div",{class:"f"},h("span",null,"Delas av"),h("div",{class:"whoset"},Object.entries(S.people).filter(([id])=>pick(id)).map(([id,p])=>h("button",{type:"button",class:"btn small "+(draft.split.includes(id)?"":"ghost"),"aria-pressed":String(draft.split.includes(id)),
         onclick:()=>{draft.split=draft.split.includes(id)?draft.split.filter(x=>x!==id):draft.split.concat(id);render()}},p.name)))),
       h("div",{class:"f"},h("span",null,"Fördelning"),h("div",{class:"seg"},[["lika","Lika delar"],["natter","Efter antal nätter"]].map(([v,l])=>h("button",{type:"button","aria-pressed":String(draft.mode===v),onclick:()=>{draft.mode=v;render()}},l)))),
       draft.mode==="natter"?h("p",{class:"note"},"Bra för stugan: den som kommer fredag betalar för två nätter i stället för tre."):null,
-      h("button",{class:"btn",type:"submit"},"Lägg till utlägget"));
+      h("div",{class:"row"},h("button",{class:"btn",type:"submit"},editId?"Spara ändringen":"Lägg till utlägget"),
+        editId?h("button",{class:"btn ghost",type:"button",onclick:()=>{ex={fresh:true};render()}},"Avbryt"):null));
     f.addEventListener("submit",e=>{e.preventDefault();const what=$("exWhat").value.trim(),amt=parseFloat($("exAmt").value.replace(/\s/g,"").replace(",","."));
       if(!what){toast("Skriv vad utlägget gällde.");$("exWhat").focus();return}
       if(!(amt>0)){toast("Skriv ett belopp större än noll, till exempel 1250.");$("exAmt").focus();return}
       if(!draft.split.length){toast("Välj minst en person som delar på utlägget.");return}
-      put("expenses",uid("e"),{what,amount:Math.round(amt*100)/100,payer:draft.payer,split:draft.split.slice(),mode:draft.mode,by:me,at:Date.now()});
-      $("exWhat").value="";$("exAmt").value="";ex={};toast(what+" är tillagt")});
+      const data={what,amount:Math.round(amt*100)/100,payer:draft.payer,split:draft.split.slice(),mode:draft.mode};
+      const id=editId||uid("e"),old=editId?S.expenses[editId]:null;
+      ex={fresh:true};$("exWhat").value="";$("exAmt").value="";
+      put("expenses",id,old?Object.assign({},old,data,{edited:Date.now(),editedBy:me}):Object.assign(data,{by:me,at:Date.now()}));
+      toast(old?what+" är ändrat":what+" är tillagt")});
     sec.append(f)}
   root.append(sec);
   // balances
@@ -714,9 +773,13 @@ function viewKassan(root){
     h("div",{class:"patch"},h("ul",{class:"list"},people.sort((a,b)=>bal[b]-bal[a]).map(id=>h("li",{class:"bal"},h("span",null,name(id)),h("b",{class:"num "+(bal[id]>=0?"pos":"neg")},(bal[id]>=.5?"+":"")+kr(bal[id]))))))));
   const exps=Object.entries(S.expenses).sort((a,b)=>b[1].at-a[1].at);
   root.append(h("section",{"aria-labelledby":"exH"},h("h3",{id:"exH"},"Alla utlägg"),
-    exps.length?h("ul",{class:"list"},exps.map(([id,x])=>h("li",{class:"exp"},h("b",null,x.what),h("b",{class:"num"},kr(x.amount)),
-      h("small",null,name(x.payer)+" betalade · delas av "+(x.split||[]).map(name).join(", ")+(x.mode==="natter"?" · efter nätter":"")),
-      me&&(x.by===me||x.payer===me)?h("div",{style:"grid-column:1/-1"},confirmBtn("Ta bort","Tryck igen för att ta bort",()=>drop("expenses",id))):null))):
+    exps.length?h("ul",{class:"list"},exps.map(([id,x])=>h("li",{class:"exp"+(id===editId?" editing":"")},h("b",null,x.what),h("b",{class:"num"},kr(x.amount)),
+      h("small",null,name(x.payer)+" betalade · delas av "+(x.split||[]).map(name).join(", ")+(x.mode==="natter"?" · efter nätter":"")+(x.edited?" · ändrat":"")),
+      me&&(x.by===me||x.payer===me)?h("div",{class:"acts"},
+        id===editId?h("span",{class:"note",style:"min-height:44px;display:inline-flex;align-items:center"},"Ändras ovanför"):
+          h("button",{class:"link",type:"button",onclick:()=>{ex={editId:id,fresh:true,what:x.what,amount:x.amount,payer:x.payer,split:(x.split||[]).filter(p=>P(p)),mode:x.mode||"lika"};render();
+            requestAnimationFrame(()=>{$("exForm").scrollIntoView({behavior:REDUCE?"auto":"smooth",block:"start"});const w=$("exWhat");if(w)w.focus({preventScroll:true})})}},"Ändra"),
+        confirmBtn("Ta bort","Tryck igen för att ta bort",()=>{if(ex.editId===id)ex={fresh:true};drop("expenses",id)})):null))):
       h("p",{class:"note"},"Inga utlägg än. Stugan, maten och bensinen brukar vara de stora.")));
 }
 
